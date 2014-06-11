@@ -160,3 +160,29 @@ for ( var i = HIGHER_BOUND; i >= LOWER_BOUND; i-- ) {
 }
 var currentTask = 0;
 setInterval( taskHandle, TIME_DEALY );
+
+var result = [];
+function a( i ) {
+    var ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = function () {
+        if ( ajax.readyState == 4 && ajax.status == 200 ) {
+            var serverContent = ajax.responseText;
+            serverContent = JSON.parse( serverContent );
+            if ( serverContent.Data.length && serverContent.Data.length > 0 ) {
+                serverContent = serverContent.Data;
+                result.push( { pro: i, data: serverContent } );
+                console.log( i );
+            }
+        }
+    }
+    ajax.open( 'post', 'http://ewt360.com/Ajax/School', true );
+
+    ajax.setRequestHeader( "Content-type", "application/x-www-form-urlencoded" );
+
+    ajax.send( 'ProvinceCode=' + i + '0000&Years=2013&WL=w&BZ=b&Pre=undefined' );
+}
+for ( var i = 10; i < 99; i++ ) {
+    a( i );
+}
+
+setTimeout( function () { console.log( JSON.stringify( result ) ); }, 50000 );

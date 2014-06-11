@@ -1,0 +1,170 @@
+﻿
+body {
+    margin: 0;
+    padding: 50px;
+    font-family: "Microsoft YaHei UI",微软雅黑,"Segoe UI", Verdana, Helvetica,黑体, Sans-Serif;
+    -ms-transition: all ease 1s;
+    -moz-transition: all ease 1s;
+    -o-transition: all ease 1s;
+    -webkit-transition: all ease 1s;
+    transition: all ease 1s;
+}
+
+div.mainContainer {
+    width: 800px;
+    margin: 100px auto auto auto;
+    padding: 10px 0 0 0;
+    background-color: rgba(255,255,255,.95);
+    box-shadow: 5px 10px 80px 5px rgb(150,150,150);
+    border-radius: 25px 25px;
+    overflow: hidden;
+}
+
+.titleArea {
+    width: 800px;
+    height: 75px;
+    font-size: 55px;
+    font-weight: 200;
+    text-shadow: 5px 5px 25px #666;
+    text-indent: 15px;
+}
+
+    .titleArea > div {
+        float: left;
+    }
+
+.queryArea {
+    width: 800px;
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+
+.selector {
+    background-color: rgb(0, 122, 204);
+    width: 220px;
+    float: left;
+    padding: 15px 0 35px 0;
+    height: 400px;
+}
+
+    .selector > div {
+        -ms-transition: all ease 1s;
+        -moz-transition: all ease 1s;
+        -o-transition: all ease 1s;
+        -webkit-transition: all ease 1s;
+        transition: all ease 1s;
+        cursor: pointer;
+        float: right;
+        font-size: 30px;
+        height: 40px;
+        width: 180px;
+        text-align: right;
+        margin: 20px 0 0 0;
+    }
+
+.selectionOn {
+    background-color: rgb(188, 224, 255);
+}
+
+.formArea {
+    float: left;
+    margin: 0;
+    padding: 15px 15px 35px 15px;
+    background-color: rgb(188, 224, 255);
+    width: 550px;
+    height: 400px;
+    overflow:hidden;
+}
+
+.formPage{
+
+    height:450px;
+    width:500px;
+    font-size:20px;
+}
+.formSet {
+    top:0;
+    position: relative;
+    margin: 0 30px 25px 30px;
+    -moz-transition: all ease 500ms;
+    -o-transition: all ease 500ms;
+    -webkit-transition: all ease 500ms;
+    transition: all ease 500ms;
+}
+.label{
+    display:block;
+    border-bottom:rgba(255,255,255,.3) solid 2px;
+    position:relative;
+    left:-25px;
+}
+
+input[type="text"] {
+    height: 25px;
+    width: 100%;
+    font-size: 20px;
+}
+
+input[type="number"] {
+    height: 25px;
+    width: 100%;
+    font-size: 20px;
+}
+
+input[type="radio"] {
+    height: 15px;
+}
+
+input[type="submit"], input[type="reset"] {
+    -ms-transition: background ease 250ms;
+    -moz-transition: background ease 250ms;
+    -o-transition: background ease 250ms;
+    -webkit-transition: background ease 250ms;
+    transition: background ease 250ms;
+
+    -ms-transition: color ease 250ms;
+    -moz-transition: color ease 250ms;
+    -o-transition: color ease 250ms;
+    -webkit-transition: color ease 250ms;
+    transition: color ease 300ms;
+
+    -ms-transition: box-shadow ease 600ms;
+    -moz-transition: box-shadow ease 600ms;
+    -o-transition: box-shadow ease 600ms;
+    -webkit-transition: box-shadow ease 600ms;
+    transition: box-shadow ease 600ms;
+
+    display: inline-block;
+    border: none;
+    background: #007acc;
+    cursor: pointer;
+    font-size: 20px;
+    height: 35px;
+    width: 70px;
+    margin: 5px;
+    padding: 5px;
+    color: #ffc;
+}
+
+    input[type="submit"]:hover, input[type="reset"]:hover {
+        background: #229cee;
+        color: #eed;
+        box-shadow: #004799 0 0 150px;
+    }
+
+select {
+    height: 25px;
+    width: 100%;
+    font-size: 18px;
+}
+.formPageTitle{
+    font-size:40px;
+    border-bottom:  rgb(150,150,150) solid 1px;
+}
+.submitArea {
+    text-align:right;
+    padding:5px 15px 0 0;
+}
+
+input, select {
+    font-family: "Microsoft YaHei UI",微软雅黑,"Segoe UI", Verdana, Helvetica,黑体, Sans-Serif;
+}

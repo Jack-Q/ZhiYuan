@@ -1,0 +1,95 @@
+﻿
+body {
+    margin: 0;
+    padding: 50px;
+    font-family: "Microsoft YaHei UI",微软雅黑,"Segoe UI", Verdana, Helvetica,黑体, Sans-Serif;
+    -ms-transition: all ease 1s;
+    -moz-transition: all ease 1s;
+    -o-transition: all ease 1s;
+    -webkit-transition: all ease 1s;
+    transition: all ease 1s;
+}
+
+div.mainContainer {
+    width: 800px;
+    margin: 100px auto auto auto;
+    padding: 10px 0 0 0;
+    background-color: rgba(255,255,255,.95);
+    box-shadow: 5px 10px 80px 5px rgb(150,150,150);
+    border-radius: 25px 25px;
+    overflow: hidden;
+}
+
+.titleArea {
+    width: 800px;
+    height: 75px;
+    font-size: 55px;
+    font-weight: 200;
+    text-shadow: 5px 5px 25px #666;
+    text-indent: 15px;
+}
+
+    .titleArea > div {
+        float: left;
+    }
+
+.queryResult {
+    width: 800px;
+    margin: 10px 0 0 0;
+    padding: 0;
+    height: 400px;
+}
+.errorResult{
+    width:100%;
+    height:400px;
+    background-color:#119cdd;
+    font-size:45px;
+    font-weight:100;
+    color:white;
+    text-indent:2em;
+    padding:0 40px 0 40px;
+    font-family:'Segoe UI Light','Segoe UI','Microsoft YaHei UI',sans-serif;
+}
+.errorResult>p{
+    padding:0;
+    margin:0;
+}
+.successResult{
+    width:100%;
+    height:400px;
+}
+.briefDescription{
+    color:white;
+    background-color:#119cdd;
+    height:30px;
+    width:100%;
+    padding-left:15px;
+    font-size:20px;
+    font-weight:400;
+    overflow:hidden;
+    line-height:30px;
+}
+#detialResult{
+    height:370px;
+    overflow-y:auto;
+}
+#resultTable{
+    width:85%;
+    margin:auto;
+    
+}
+thead>tr>td{
+background-color:#007acc;
+}
+tbody:nth-child(2n+1) > td{
+    background-color:#22bdff;
+}
+tbody:nth-child(2n) > td{
+    background-color:#88eeff;
+}
+#resultTable td{
+    border:1px solid #aaa;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
