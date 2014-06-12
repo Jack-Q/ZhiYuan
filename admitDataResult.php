@@ -1,14 +1,249 @@
 ﻿<?php
-    //http://localhost:51073/admitDataResult.php?queryType=0&queryYear=0&lowerBound=500&upperBound=152
-    //http://localhost:51073/admitDataResult.php?queryType=1&queryYear=1&SchoolName=%E5%AE%89%E5%BE%BD%E5%86%9C%E4%B8%9A%E5%A4%A7%E5%AD%A6
-    //http://localhost:51073/admitDataResult.php?queryType=2&queryYear=0&lowerBound=578&upperBound=255
+    require_once('databaseConfiguration.php');
     $errorOccurance=FALSE;
     $selectType;
-    if(isset($_GET[queryType])){
-        $selectType=$_GET[queryType];
-        echo $_GET[queryType];
+    $yearType;
+    $briefDescription;
+    $dataRows;
+    $dataConut;
+    $databaseConnection;
+    function connectDatabase(){
+        global $databaseConnection;
+        $databaseConnection=mysql_connect(DATABASE_HOST,DATABASE_USER, DATABASE_PASSWORD);
+        if (!$databaseConnection)
+        {
+            echo('Oops ! Run into error ! ');
+            echo('<br /> So sorry for the for the inconvenience caused by database error.');
+            die("Database selection failed: " . $databaseConnection->connect_error);
+        }
+        mysql_select_db(DATABASE_NAME, $databaseConnection);
+    }
+    function closeDatabase(){
+        global $databaseConnection;
+        mysql_close($databaseConnection);
+        
+    }
+    function typePC2wordPC($typePC){
+        switch($typePC){
+            case 'Pre':
+                return '提前批';
+            case 'One':
+                return '第一批';
+            case 'Two':
+                return '第二批';
+            case 'Thr':
+                return '第三批';
+            default:
+                return '';
+        }
+    }
+    function fetchDataByScore($lowerBnd,$upperBnd,$yearInd){
+        global $databaseConnection;
+        global $errorOccurance;
+        global $dataConut;
+        global $dataRows;
+        global $briefDescription;
+        $YEAR_STR;
+        $queryStr='SELECT * FROM AdmitInfo WHERE ( Score BETWEEN ';
+        $queryStr.=$lowerBnd.' AND '.$upperBnd;
+        $queryStr.=' ) AND ';
+        switch($yearInd){
+            case '0':
+                $YEAR_STR='近三';
+                $queryStr.='( Year BETWEEN 2011 AND 2013 )';
+                break;
+            case '1':
+                $YEAR_STR='近两';
+                $queryStr.='( Year BETWEEN 2012 AND 2013 )';
+                break;
+            case '2':
+                $YEAR_STR='2013';
+                $queryStr.='( Year = 2013 )';
+                break;
+            case '3':
+                $YEAR_STR='2012';
+                $queryStr.='( Year = 2012 )';
+                break;
+            case '4':
+                $YEAR_STR='2011';
+                $queryStr.='( Year = 2011 )';
+                break;
+            default:
+                $YEAR_STR='';
+                $errorOccurance=TRUE;
+        }
+        $queryStr.=' ORDER BY Score DESC , Year DESC';
+        $result=mysql_query($queryStr,$databaseConnection);
+        if(!$result){
+            $errorOccurance=TRUE;
+            return;
+        }
+        $dataConut=mysql_num_rows($result);
+        $dataRows=$result;
+        $briefDescription='检索'.$YEAR_STR.'年分数在'.$lowerBnd.'到'
+            .$upperBnd.'的考生录取信息，';
+        if($dataConut==0){
+            $briefDescription.='未检索到结果。';
+        }else{
+            $briefDescription.='检索到'.$dataConut.'个结果。';
+        }
+    }
+    function fetchDataBySchool($school,$yearInd){
+        global $databaseConnection;
+        global $errorOccurance;
+        global $dataConut;
+        global $dataRows;
+        global $briefDescription;
+        $YEAR_STR;
+        $queryStr='SELECT * FROM AdmitInfo WHERE ( College = "';
+        $queryStr.=$school;
+        $queryStr.='" ) AND ';
+        switch($yearInd){
+            case '0':
+                $YEAR_STR='近三';
+                $queryStr.='( Year BETWEEN 2011 AND 2013 )';
+                break;
+            case '1':
+                $YEAR_STR='近两';
+                $queryStr.='( Year BETWEEN 2012 AND 2013 )';
+                break;
+            case '2':
+                $YEAR_STR='2013';
+                $queryStr.='( Year = 2013 )';
+                break;
+            case '3':
+                $YEAR_STR='2012';
+                $queryStr.='( Year = 2012 )';
+                break;
+            case '4':
+                $YEAR_STR='2011';
+                $queryStr.='( Year = 2011 )';
+                break;
+            default:
+                $YEAR_STR='';
+                $errorOccurance=TRUE;
+        }
+        $queryStr.=' ORDER BY Rank , Year DESC';
+        $result=mysql_query($queryStr,$databaseConnection);
+        if(!$result){
+            $errorOccurance=TRUE;
+            return;
+        }
+        $dataConut=mysql_num_rows($result);
+        $dataRows=$result;
+        $briefDescription='检索'.$YEAR_STR.'年'.$school.'考生录取信息，';
+        if($dataConut==0){
+            $briefDescription.='未检索到结果。';
+        }else{
+            $briefDescription.='检索到'.$dataConut.'个结果。';
+        }
+    }
+    function fetchDataByRank($lowerBnd,$upperBnd,$yearInd){
+        global $databaseConnection;
+        global $errorOccurance;
+        global $dataConut;
+        global $dataRows;
+        global $briefDescription;
+        $YEAR_STR;
+        $queryStr='SELECT * FROM AdmitInfo WHERE ( Rank BETWEEN ';
+        $queryStr.=$lowerBnd.' AND '.$upperBnd;
+        $queryStr.=' ) AND ';
+        switch($yearInd){
+            case '0':
+                $YEAR_STR='近三';
+                $queryStr.='( Year BETWEEN 2011 AND 2013 )';
+                break;
+            case '1':
+                $YEAR_STR='近两';
+                $queryStr.='( Year BETWEEN 2012 AND 2013 )';
+                break;
+            case '2':
+                $YEAR_STR='2013';
+                $queryStr.='( Year = 2013 )';
+                break;
+            case '3':
+                $YEAR_STR='2012';
+                $queryStr.='( Year = 2012 )';
+                break;
+            case '4':
+                $YEAR_STR='2011';
+                $queryStr.='( Year = 2011 )';
+                break;
+            default:
+                $YEAR_STR='';
+                $errorOccurance=TRUE;
+        }
+        $queryStr.=' ORDER BY Rank , Year DESC';
+        $result=mysql_query($queryStr,$databaseConnection);
+        if(!$result){
+            $errorOccurance=TRUE;
+            return;
+        }
+        $dataConut=mysql_num_rows($result);
+        $dataRows=$result;
+        $briefDescription='检索'.$YEAR_STR.'年全省排名在'.$lowerBnd.'到'
+            .$upperBnd.'的考生录取信息，';
+        if($dataConut==0){
+            $briefDescription.='未检索到结果。';
+        }else{
+            $briefDescription.='检索到'.$dataConut.'个结果。';
+        }
+    }
+    if(isset($_GET['queryType'])){
+        $selectType=$_GET['queryType'];
+        switch ($selectType){
+            case '0':
+                if(isset($_GET['queryYear'],$_GET['lowerBound'],$_GET['upperBound'])){
+                    $lowerBound=intval(trim($_GET['lowerBound']));
+                    $upperBound=intval(trim($_GET['upperBound']));
+                    $yearType=$_GET['queryYear'];
+                    if(!($lowerBound>$upperBound)){
+                        connectDatabase();
+                        fetchDataByScore($lowerBound,$upperBound,$yearType);
+                        closeDataBase();
+                    }else{
+                        $errorOccurance=TRUE;
+                    }
+                }else{
+                    $errorOccurance=TRUE;
+                }
+                break;
+            case '1':
+                if(isset($_GET['queryYear'],$_GET['SchoolName'])&&!empty($_GET['SchoolName'])){
+                    $school=trim($_GET['SchoolName']);
+                    $yearType=$_GET['queryYear'];
+                    if(!($lowerBound>$upperBound)){
+                        connectDatabase();
+                        fetchDataBySchool($school,$yearType);
+                        closeDataBase();
+                    }else{
+                        $errorOccurance=TRUE;
+                    }                    
+                }else{
+                    $errorOccurance=TRUE;
+                }
+                break;
+            case '2':
+                if(isset($_GET['queryYear'],$_GET['lowerBound'],$_GET['upperBound'])){
+                    $lowerBound=intval(trim($_GET['lowerBound']));
+                    $upperBound=intval(trim($_GET['upperBound']));
+                    $yearType=$_GET['queryYear'];
+                    if(!($lowerBound>$upperBound)){
+                        connectDatabase();
+                        fetchDataByRank($lowerBound,$upperBound,$yearType);
+                        closeDataBase();
+                    }else{
+                        $errorOccurance=TRUE;
+                    }                    
+                }else{
+                    $errorOccurance=TRUE;
+                }
+                break;
+            default:
+            $errorOccurance=TRUE;
+        }
     }else{
-        $errorAccurance=TRUE;
+        $errorOccurance=TRUE;
     }
 ?>
 
@@ -33,48 +268,71 @@
                     </svg>
                 </a>
             </div>
-            <div>
-                历年高校录取情况查询结果
-            </div>
+            <div>历年高校录取情况查询结果<sup style="font-size: 0.4em;color:#4af;word-wrap: break-word;">beta</sup></div>
         </div>
         <div class="queryResult">
             <?php
                 if($errorOccurance){
-                    
+            ?>
+            <div class="errorResult">
+                <p style="font-size:2.7em;text-indent:1em;margin-bottom:35px;">:(</p>
+                <p> Oops! An error occured while<br /> parsing your query.</p>
+            </div>
+            <?php
                 }else{
-                    $returnStr='<div class="errorResult">'
-                    .'<p style="font-size:2.7em;text-indent:1em;margin-bottom:35px;">'
-                    .':(</p><p> Oops! An error occured while<br /> prasing your query.</p></div>';
-                    echo $returnStr;
-                }
             ?>
             <div class="successResult">
                 <div class="briefDescription">
-                    检索近三年分数在{1}到{2}的考生录取信息，找到{n}个结果。
-                    检索2012年分数在{1}到{2}的考生录取信息，找到{n}个结果。
-                    检索近三年全省排名在{1}到{2}的考生录取信息，找到{n}个结果。
-                    检索近三年{university}考生录取信息，找到{n}个结果。
+                    <?php echo $briefDescription; ?>
                 </div>
                 <div id="detialResult">
+                    <?php
+                        if(!$dataConut>0){
+                    ?>
+                    <div class="resultNotFound">
+                        <p style="font-size:2.7em;text-indent:1em;margin-bottom:35px;margin-top:0;">:(</p>
+                        <p> Oops! No results were found.</p>
+                    </div>
+                    <?php        
+                        }else{
+                    ?>
                     <table id="resultTable" cellspacing="0" >
                         <thead>
                             <tr>
                                 <td width="5%">序号</td>
                                 <td width="30%">学校</td>
-                                <td width="20%">专业</td>
-                                <td width="10%">全省排名</td>
+                                <td width="25%">专业</td>
+                                <td width="9%">全省排名</td>
                                 <td width="5%">分数</td>
-                                <td width="5%"><abbr title="本位次录取人数">人数</abbr></td>
-                                <td width="10%">批次</td>
+                                <td width="3%"><abbr title="本位次录取人数">人数</abbr></td>
+                                <td width="8%">批次</td>
                                 <td width="5%">年份</td>
                             </tr>
                         </thead>
                         <tbody>
-
+                        <?php
+                            for($i=0;$i<$dataConut;$i++){
+                                $row=mysql_fetch_row($dataRows);
+                                echo '<tr><td>'.($i+1).'</td>';
+                                echo '<td>'.$row[0].'</td>';
+                                echo '<td>'.$row[1].'</td>';
+                                echo '<td>'.$row[2].'</td>';
+                                echo '<td>'.$row[3].'</td>';
+                                echo '<td>'.$row[4].'</td>';
+                                echo '<td>'.typePC2wordPC($row[7]).'</td>';
+                                echo '<td>'.$row[8].'</td></tr>';
+                            }                                
+                        ?>
                         </tbody>
                     </table>
+                    <?php        
+                        }
+                    ?>
                 </div>
             </div>
+            <?php
+                }
+            ?>
         </div>
     </div>
 

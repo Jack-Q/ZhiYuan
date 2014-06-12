@@ -22,9 +22,7 @@
                     </svg>
                 </a>
             </div>
-            <div>
-                历年高校录取情况查询
-            </div>
+            <div>历年高校录取情况查询<sup style="font-size: 0.4em;color:#4af;word-wrap: break-word;">beta</sup></div>
         </div>
         <div class="queryArea">
             <div class="selector" id="selector">
@@ -51,11 +49,13 @@
                                     <span class="label">查询年份</span>
                                     <select id="queryYear" name="queryYear">
                                         <optgroup label="综合">
-                                            <option value="0" selected="selected">近两年</option>
+                                            <option value="0" selected="selected">近三年</option>
+                                            <option value="1">近两年</option>
                                         </optgroup>
                                         <optgroup label="单年">
-                                            <option value="1">2013</option>
-                                            <option value="2">2012</option>
+                                            <option value="2">2013</option>
+                                            <option value="3">2012</option>
+                                            <option value="4">2011</option>
                                         </optgroup>
                                     </select>
                                 </div>
@@ -83,11 +83,13 @@
                                     <span class="label">查询年份</span>
                                     <select id="queryYear" name="queryYear">
                                         <optgroup label="综合">
-                                            <option value="0" selected="selected">近两年</option>
+                                            <option value="0" selected="selected">近三年</option>
+                                            <option value="1">近两年</option>
                                         </optgroup>
                                         <optgroup label="单年">
-                                            <option value="1">2013</option>
-                                            <option value="2">2012</option>
+                                            <option value="2">2013</option>
+                                            <option value="3">2012</option>
+                                            <option value="4">2011</option>
                                         </optgroup>
                                     </select>
                                 </div>
@@ -167,11 +169,13 @@
                                     <span class="label">查询年份</span>
                                     <select id="queryYear" name="queryYear">
                                         <optgroup label="综合">
-                                            <option value="0" selected="selected">近两年</option>
+                                            <option value="0" selected="selected">近三年</option>
+                                            <option value="1">近两年</option>
                                         </optgroup>
                                         <optgroup label="单年">
-                                            <option value="1">2013</option>
-                                            <option value="2">2012</option>
+                                            <option value="2">2013</option>
+                                            <option value="3">2012</option>
+                                            <option value="4">2011</option>
                                         </optgroup>
                                     </select>
                                 </div>

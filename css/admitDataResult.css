@@ -23,6 +23,7 @@ div.mainContainer {
 .titleArea {
     width: 800px;
     height: 75px;
+    overflow: hidden;
     font-size: 55px;
     font-weight: 200;
     text-shadow: 5px 5px 25px #666;
@@ -39,57 +40,80 @@ div.mainContainer {
     padding: 0;
     height: 400px;
 }
-.errorResult{
-    width:100%;
-    height:400px;
-    background-color:#119cdd;
-    font-size:45px;
-    font-weight:100;
-    color:white;
-    text-indent:2em;
-    padding:0 40px 0 40px;
-    font-family:'Segoe UI Light','Segoe UI','Microsoft YaHei UI',sans-serif;
+
+.errorResult {
+    width: 100%;
+    height: 400px;
+    background-color: #119cdd;
+    font-size: 45px;
+    font-weight: 100;
+    color: white;
+    text-indent: 2em;
+    padding: 0 40px 0 40px;
+    font-family: 'Segoe UI Light','Segoe UI','Microsoft YaHei UI',sans-serif;
 }
-.errorResult>p{
-    padding:0;
-    margin:0;
+
+    .errorResult > p {
+        padding: 0;
+        margin: 0;
+    }
+
+.resultNotFound {
+    position:relative;
+    top:0;
+    width: 100%;
+    height: 370px;
+    background-color: #119cdd;
+    font-size: 45px;
+    font-weight: 100;
+    color: white;
+    text-indent: 2em;
+    font-family: 'Segoe UI Light','Segoe UI','Microsoft YaHei UI',sans-serif;
 }
-.successResult{
-    width:100%;
-    height:400px;
+
+.successResult {
+    width: 100%;
+    height: 400px;
 }
-.briefDescription{
-    color:white;
-    background-color:#119cdd;
-    height:30px;
-    width:100%;
-    padding-left:15px;
-    font-size:20px;
-    font-weight:400;
-    overflow:hidden;
-    line-height:30px;
+
+.briefDescription {
+    color: white;
+    background-color: #119cdd;
+    height: 30px;
+    width: 100%;
+    padding-left: 15px;
+    font-size: 20px;
+    font-weight: 400;
+    overflow: hidden;
+    line-height: 30px;
 }
-#detialResult{
-    height:370px;
-    overflow-y:auto;
+
+#detialResult {
+    height: 370px;
+    overflow-y: auto;
 }
-#resultTable{
-    width:85%;
-    margin:auto;
-    
+
+#resultTable {
+    width: 95%;
+    margin: auto;
 }
-thead>tr>td{
-background-color:#007acc;
+
+thead > tr > td {
+    color: #fff;
+    background-color: #007acc;
 }
-tbody:nth-child(2n+1) > td{
-    background-color:#22bdff;
+
+tbody > tr:nth-child(2n+1) > td {
+    background-color: #66bbff;
 }
-tbody:nth-child(2n) > td{
-    background-color:#88eeff;
+
+tbody > tr:nth-child(2n) > td {
+    background-color: #aaefff;
 }
-#resultTable td{
-    border:1px solid #aaa;
-    margin:0;
-    padding:0;
-    text-align:center;
+
+#resultTable td {
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
