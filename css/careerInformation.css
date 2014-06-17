@@ -1,0 +1,761 @@
+﻿
+body {
+    margin: 0;
+    padding: 50px;
+    font-family: "Microsoft YaHei UI",微软雅黑,"Segoe UI", Verdana, Helvetica,黑体, Sans-Serif;
+    -ms-transition: all ease 1s;
+    -moz-transition: all ease 1s;
+    -o-transition: all ease 1s;
+    -webkit-transition: all ease 1s;
+    transition: all ease 1s;
+}
+
+div.mainContainer {
+    width: 800px;
+    margin: 100px auto auto auto;
+    padding: 10px 0 0 0;
+    background-color: rgba(255,255,255,.95);
+    box-shadow: 5px 10px 80px 5px rgb(150,150,150);
+    border-radius: 25px 25px;
+    overflow: hidden;
+}
+
+.titleArea {
+    width: 800px;
+    height: 75px;
+    font-size: 55px;
+    font-weight: 200;
+    text-shadow: 5px 5px 25px #666;
+    text-indent: 15px;
+}
+
+    .titleArea > div {
+        float: left;
+    }
+
+.majorBox {
+    width: 80000px;
+    margin: 10px 0 0 0;
+    padding: 0;
+    height: 450px;
+    overflow: hidden;
+}
+
+    .majorBox > div {
+        height: 450px;
+        margin: 0;
+        padding: 0;
+        float: left;
+        -moz-transition: all ease 500ms;
+        -o-transition: all ease 500ms;
+        -webkit-transition: all ease 500ms;
+        transition: all ease 500ms;
+    }
+
+/*Loading Animation*/
+@-moz-keyframes lv1-move {
+    from {
+        -moz-transform: translate(0,50%);
+        -ms-transform: translate(0,50%);
+        -o-transform: translate(0,50%);
+        -webkit-transform: translate(0,50%);
+        transform: translate(0,50%);
+    }
+
+    to {
+        -moz-transform: translate(0,850%);
+        -ms-transform: translate(0,850%);
+        -o-transform: translate(0,850%);
+        -webkit-transform: translate(0,850%);
+        transform: translate(0,850%);
+    }
+}
+
+@-webkit-keyframes lv1-move {
+    from {
+        -moz-transform: translate(0,50%);
+        -ms-transform: translate(0,50%);
+        -o-transform: translate(0,50%);
+        -webkit-transform: translate(0,50%);
+        transform: translate(0,50%);
+    }
+
+    to {
+        -moz-transform: translate(0,850%);
+        -ms-transform: translate(0,850%);
+        -o-transform: translate(0,850%);
+        -webkit-transform: translate(0,850%);
+        transform: translate(0,850%);
+    }
+}
+
+@keyframes lv1-move {
+    from {
+        -moz-transform: translate(0,50%);
+        -ms-transform: translate(0,50%);
+        -o-transform: translate(0,50%);
+        -webkit-transform: translate(0,50%);
+        transform: translate(0,50%);
+    }
+
+    to {
+        -moz-transform: translate(0,850%);
+        -ms-transform: translate(0,850%);
+        -o-transform: translate(0,850%);
+        -webkit-transform: translate(0,850%);
+        transform: translate(0,850%);
+    }
+}
+
+section {
+    width: 10%;
+    height: 100%;
+    position: absolute;
+    left: 45%;
+}
+
+    section:nth-child(2) {
+        -moz-transform: rotate(22.5deg);
+        -ms-transform: rotate(22.5deg);
+        -o-transform: rotate(22.5deg);
+        -webkit-transform: rotate(22.5deg);
+        transform: rotate(22.5deg);
+    }
+
+    section:nth-child(3) {
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    section:nth-child(4) {
+        -moz-transform: rotate(67.5deg);
+        -ms-transform: rotate(67.5deg);
+        -o-transform: rotate(67.5deg);
+        -webkit-transform: rotate(67.5deg);
+        transform: rotate(67.5deg);
+    }
+
+    section:nth-child(5) {
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    section:nth-child(6) {
+        -moz-transform: rotate(112.5deg);
+        -ms-transform: rotate(112.5deg);
+        -o-transform: rotate(112.5deg);
+        -webkit-transform: rotate(112.5deg);
+        transform: rotate(112.5deg);
+    }
+
+    section:nth-child(7) {
+        -moz-transform: rotate(135deg);
+        -ms-transform: rotate(135deg);
+        -o-transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+
+    section:nth-child(8) {
+        -moz-transform: rotate(157.5deg);
+        -ms-transform: rotate(157.5deg);
+        -o-transform: rotate(157.5deg);
+        -webkit-transform: rotate(157.5deg);
+        transform: rotate(157.5deg);
+    }
+
+figure div {
+    height: 10%;
+    border-radius: 50%;
+    background: dodgerblue;
+    -moz-animation: lv1-move 1s ease-in-out infinite alternate;
+    -o-animation: lv1-move 1s ease-in-out infinite alternate;
+    -webkit-animation: lv1-move 1s ease-in-out infinite alternate;
+    animation: lv1-move 1s ease-in-out infinite alternate;
+}
+
+section:nth-child(1) > div {
+    -moz-animation-delay: -0.5s;
+    -o-animation-delay: -0.5s;
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+
+section:nth-child(3) > div {
+    -moz-animation-delay: -0.5s;
+    -o-animation-delay: -0.5s;
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+
+section:nth-child(5) > div {
+    -moz-animation-delay: -0.5s;
+    -o-animation-delay: -0.5s;
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+
+section:nth-child(7) > div {
+    -moz-animation-delay: -0.5s;
+    -o-animation-delay: -0.5s;
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+
+/*LEVEL ONE MODE*/
+div.lv1-box-open, div.lv1-box-close {
+    width: 800px;
+    background-color: #aee;
+    overflow: hidden;
+    -moz-transition: all ease 1s;
+    -o-transition: all ease 1s;
+    -webkit-transition: all ease 1s;
+    transition: all ease 1s;
+}
+
+div.lv1-box-open {
+    width: 800px;
+}
+
+    div.lv1-box-open > div.lv1-innerBox {
+        left: -50px;
+    }
+
+div.lv1-box-close {
+    width: 50px;
+}
+
+    div.lv1-box-close > div.lv1-innerBox {
+        left: 0;
+    }
+
+div.lv1-innerBox {
+    width: 850px;
+    position: relative;
+    height: 450px;
+    -moz-transition: all ease 500ms;
+    -o-transition: all ease 500ms;
+    -webkit-transition: all ease 500ms;
+    transition: all ease 500ms;
+}
+
+    div.lv1-innerBox > div {
+        float: left;
+        height: 450px;
+    }
+
+div.lv1-miniview {
+    width: 50px;
+    background-color: #007acc;
+    margin: 0;
+    padding: 0;
+}
+
+div.lv1-miniview-title {
+    width: 50px;
+    padding: 10px 0 35px 10px;
+    font-size: 35px;
+    color: #fed;
+    font-family: 'Microsoft YaHei UI Light','Microsoft YaHei UI',sans-serif;
+    font-weight: 100;
+    line-height: 35px;
+}
+
+div.lv1-miniview-name-box {
+    height: 280px;
+    width: 50px;
+    padding: 0;
+    margin-left: 0;
+}
+
+div.lv1-miniview-name {
+    float: right;
+    text-align: right;
+    line-height: 20px;
+    width: 20px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: #47cf74;
+    font-size: 20px;
+    border: none;
+    padding: 10px 5px 10px 10px;
+    font-weight: 500;
+    cursor: pointer;
+    -moz-transition: all ease 500ms;
+    -o-transition: all ease 500ms;
+    -webkit-transition: all ease 500ms;
+    transition: all ease 500ms;
+}
+
+    div.lv1-miniview-name:hover {
+        padding-right: 10px;
+    }
+
+div.lv1-miniview-open {
+    width: 50px;
+    height: 50px;
+    padding-bottom: 20px;
+    border-top: solid rgba(255,255,255,.3) 1px;
+    cursor: pointer;
+    -moz-transition: all ease 500ms;
+    -o-transition: all ease 500ms;
+    -webkit-transition: all ease 500ms;
+    transition: all ease 500ms;
+}
+
+    div.lv1-miniview-open:hover {
+        background-color: rgba(255,255,255,.4);
+    }
+
+div.lv1-fullview-title {
+    border-top: 2px solid #007acc;
+    width: 800px;
+    height: 98px;
+    padding: 0;
+    margin: 0;
+}
+
+    div.lv1-fullview-title > div {
+        line-height: 60px;
+        font-size: 50px;
+        margin: 0 0 0 25px;
+        border-top: solid 5px #007acc;
+        width: 220px;
+        text-align: center;
+        color: #007acc;
+    }
+
+div.lv1-fullview-content-box {
+    width: 800px;
+    height: 350px;
+}
+
+div.lv1-loading {
+    width: 800px;
+    height: 450px;
+}
+
+    div.lv1-loading > figure {
+        margin: auto;
+        width: 250px;
+        height: 250px;
+        position: relative;
+    }
+
+
+div.lv1-row {
+    height: 80px;
+    margin: 0;
+    padding: 0;
+    width: 800px;
+    text-align: center;
+}
+
+span.lv1-width1, span.lv1-width2, span.lv1-width3, span.lv1-width4 {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    height: 60px;
+    border-radius: 15px;
+    font-size: 25px;
+    line-height: 28px;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+}
+
+span.lv1-width1 {
+    width: 40px;
+    background-color: #9898ff;
+    text-align: center;
+}
+
+span.lv1-width2 {
+    width: 60px;
+    background-color: #47cf74;
+}
+
+span.lv1-width3 {
+    width: 90px;
+    background-color: #ff6f6f;
+}
+
+span.lv1-width4 {
+    width: 120px;
+    background-color: #58b1fc;
+}
+
+/*LEVEL TWO MODE*/
+
+div.lv2-box-open, div.lv2-box-close {
+    width: 750px;
+    background-color: #cfd;
+    overflow: hidden;
+    -moz-transition: all ease 1s;
+    -o-transition: all ease 1s;
+    -webkit-transition: all ease 1s;
+    transition: all ease 1s;
+}
+
+div.lv2-box-open {
+    width: 750px;
+}
+
+    div.lv2-box-open > div.lv2-innerBox {
+        left: -50px;
+    }
+
+div.lv2-box-close {
+    width: 50px;
+}
+
+    div.lv2-box-close > div.lv2-innerBox {
+        left: 0;
+    }
+
+div.lv2-innerBox {
+    width: 800px;
+    position: relative;
+    height: 450px;
+    -moz-transition: all ease 500ms;
+    -webkit-transition: all ease 500ms;
+    transition: all ease 500ms;
+}
+
+    div.lv2-innerBox > div {
+        float: left;
+        height: 450px;
+    }
+
+div.lv2-miniview {
+    width: 50px;
+    background-color: #47cf74;
+    margin: 0;
+    padding: 0;
+}
+
+div.lv2-miniview-title {
+    width: 50px;
+    padding: 10px 0 35px 10px;
+    font-size: 35px;
+    color: #fff;
+    font-family: 'Microsoft YaHei UI Light','Microsoft YaHei UI',sans-serif;
+    font-weight: 100;
+    line-height: 35px;
+}
+
+div.lv2-miniview-name-box {
+    height: 280px;
+    width: 50px;
+    padding: 0;
+    margin-left: 0;
+}
+
+div.lv2-miniview-name {
+    float: right;
+    text-align: right;
+    line-height: 20px;
+    width: 20px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: #f359a8;
+    font-size: 20px;
+    border: none;
+    padding: 10px 5px 10px 10px;
+    font-weight: 500;
+    cursor: pointer;
+    -moz-transition: all ease 500ms;
+    -o-transition: all ease 500ms;
+    -webkit-transition: all ease 500ms;
+    transition: all ease 500ms;
+}
+
+    div.lv2-miniview-name:hover {
+        padding-right: 10px;
+    }
+
+div.lv2-miniview-open {
+    width: 50px;
+    height: 50px;
+    padding-bottom: 20px;
+    border-top: solid rgba(255,255,255,.3) 1px;
+    cursor: pointer;
+    -moz-transition: all ease 500ms;
+    -o-transition: all ease 500ms;
+    -webkit-transition: all ease 500ms;
+    transition: all ease 500ms;
+}
+
+    div.lv2-miniview-open:hover {
+        background-color: rgba(255,255,255,.4);
+    }
+
+div.lv2-fullview-title {
+    border-top: 2px solid #47cf74;
+    width: 750px;
+    height: 98px;
+    padding: 0;
+    margin: 0;
+}
+
+    div.lv2-fullview-title > div {
+        line-height: 60px;
+        font-size: 50px;
+        margin: 0 0 0 25px;
+        border-top: solid 5px #47cf74;
+        width: 220px;
+        text-align: center;
+        color: #47cf74;
+    }
+
+div.lv2-fullview-content-box {
+    width: 750px;
+    height: 350px;
+    text-align: center;
+}
+
+div.lv2-selector {
+    display: inline-block;
+    text-align: center;
+    margin: 6px;
+    padding: 6px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 25px;
+    line-height: 28px;
+    cursor: pointer;
+    -moz-transition: all ease 1500ms;
+    -o-transition: all ease 1500ms;
+    -webkit-transition: all ease 1500ms;
+    transition: all ease 1500ms;
+}
+/*Level 3 Mode*/
+
+
+div.lv3-box-open, div.lv3-box-close {
+    width: 700px;
+    background-color: #fed;
+    overflow: hidden;
+    -moz-transition: all ease 1s;
+    -o-transition: all ease 1s;
+    -webkit-transition: all ease 1s;
+    transition: all ease 1s;
+}
+
+div.lv3-box-open {
+    width: 700px;
+}
+
+    div.lv3-box-open > div.lv3-innerBox {
+        left: -50px;
+    }
+
+div.lv3-box-close {
+    width: 50px;
+}
+
+    div.lv3-box-close > div.lv3-innerBox {
+        left: 0;
+    }
+
+div.lv3-innerBox {
+    width: 750px;
+    position: relative;
+    height: 450px;
+    -moz-transition: all ease 500ms;
+    -o-transition: all ease 500ms;
+    -webkit-transition: all ease 500ms;
+    transition: all ease 500ms;
+}
+
+    div.lv3-innerBox > div {
+        float: left;
+        height: 450px;
+    }
+
+div.lv3-miniview {
+    width: 50px;
+    background-color: #f359a8;
+    margin: 0;
+    padding: 0;
+}
+
+div.lv3-miniview-title {
+    width: 50px;
+    padding: 10px 0 35px 10px;
+    font-size: 35px;
+    color: #fff;
+    font-family: 'Microsoft YaHei UI Light','Microsoft YaHei UI',sans-serif;
+    font-weight: 100;
+    line-height: 35px;
+}
+
+div.lv3-miniview-name-box {
+    text-align: center;
+    height: 280px;
+    width: 50px;
+    padding: 0;
+    margin-left: 0;
+}
+
+div.lv3-miniview-name {
+    float: right;
+    text-align: right;
+    line-height: 20px;
+    width: 20px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: #fea;
+    font-size: 20px;
+    border: none;
+    padding: 10px 5px 10px 10px;
+    font-weight: 500;
+    cursor: pointer;
+    -moz-transition: all ease 500ms;
+    -o-transition: all ease 500ms;
+    -webkit-transition: all ease 500ms;
+    transition: all ease 500ms;
+}
+
+    div.lv3-miniview-name:hover {
+        padding-right: 10px;
+    }
+
+div.lv3-miniview-open {
+    width: 50px;
+    height: 50px;
+    padding-bottom: 20px;
+    border-top: solid rgba(255,255,255,.3) 1px;
+    cursor: pointer;
+    -moz-transition: all ease 500ms;
+    -o-transition: all ease 500ms;
+    -webkit-transition: all ease 500ms;
+    transition: all ease 500ms;
+}
+
+    div.lv3-miniview-open:hover {
+        background-color: rgba(255,255,255,.4);
+    }
+
+div.lv3-fullview-title {
+    border-top: 2px solid #f359a8;
+    width: 700px;
+    height: 78px;
+    padding: 0;
+    margin: 0;
+}
+
+    div.lv3-fullview-title > div {
+        line-height: 60px;
+        font-size: 50px;
+        margin: 0 0 0 25px;
+        border-top: solid 5px #f359a8;
+        width: 220px;
+        text-align: center;
+        color: #f359a8;
+    }
+
+div.lv3-fullview-content-box {
+    width: 700px;
+    height:370px;
+    overflow-y:auto;
+    text-align:center;
+}
+div.lv3-selector {
+    display: inline-block;
+    text-align: center;
+    margin: 6px;
+    padding: 6px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 25px;
+    line-height: 28px;
+    cursor: pointer;
+    -moz-transition: all ease 1500ms;
+    -o-transition: all ease 1500ms;
+    -webkit-transition: all ease 1500ms;
+    transition: all ease 1500ms;
+}
+div.lv3-clear{
+    clear:both;
+}
+/*Detial Box */
+div.detial-box {
+    height: 450px;
+    width: 1300px;
+    background-color: #ffeeaa;
+    overflow:hidden;
+}
+div.detial-inner-box{
+    width:1300px;
+    position:relative;
+    left:0;
+    -moz-transition: all ease-in 700ms;
+    -o-transition: all ease-in 700ms;
+    -webkit-transition: all ease-in 700ms; 
+    transition: all ease-in 700ms;
+
+}
+
+div.loaded {
+    left:-650px;
+}
+div.detial-loading {
+    float: left;
+    height: 280px;
+    width: 490px;
+    text-align: center;
+    padding: 80px;
+    overflow: hidden;
+    position:relative;
+}
+
+    div.detial-loading > figure {
+        display: inline-block;
+        width: 250px;
+        height: 250px;
+        position: relative;
+    }
+
+div.detial-content-warp {
+    width:650px;
+    height:450px;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    float:left;
+}
+
+div.detial-title-box {
+    width: 650px;
+    height: 46px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-top: #fb5 solid 4px;
+}
+
+div.detial-title {
+    padding: 8px 0 0 15px;
+    display: block;
+    height: 40px;
+    font-size: 35px;
+    line-height: 35px;
+}
+
+div.detial-content {
+    width: 600px;
+    padding: 0 25px 0 25px;
+    overflow: auto;
+    height: 400px;
+}
+
+.mrgB15 {
+    display: none;
+}

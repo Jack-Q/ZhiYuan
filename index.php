@@ -24,7 +24,8 @@
         }
 
         body > div {
-            width: 800px;
+            width:90%;
+            max-width: 800px;
             margin: 50px auto 0 auto;
             padding: 15px;
         }
@@ -43,29 +44,37 @@
         </p>
         <ol>
             <li>
-                <a href="dataManage.php">
-                    View Raw Admit Data
-                </a>
-                <p>
-                    Login information:<br />
-                    System: MySQL<br />
-                    Server: 10.0.16.16:4066<br />
-                    Username: O9kPfOPv<br />
-                    Password: OWP6M2iTZ1pW<br />
-                    Database: jackq201m_mysql_tp15sq0g<br /><br />
-                    (Beacuse of the limit of JD-cloud, you must add "&select=AdmitInfo" at the end of the
-                    url after login the database management systems)
-                </p>
-            </li>
-            <li>
                 <a href="admitDataQuery.php">
                     Query Admit Information
                 </a>
                 <p>
                     Current in beta test stage.
+                    <br />
+                    TODO: Add paging fiunction to query result page.
+                </p>
+            </li>
+            <li>
+                <a href="majorInformation.html">
+                    View Major Information
+                </a>
+                <p>
+                    Current in beta test stage.
+                </p>
+            </li>
+            <li>
+                <a href="careerInformation.html">
+                    View Career Information
+                </a>
+                <p>
+                    Current in beta test stage.
+                    <br />
+                    TODO: Shorten some labels of menu that are too long to fit in the box,
+
                 </p>
             </li>
         </ol>
+        <hr />
+
     </div>
 </body>
 </html>

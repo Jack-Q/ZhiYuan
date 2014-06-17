@@ -24,6 +24,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CollegeAdmition", "http://l
 		SlnRelativePath = "..\CollegeAdmition\"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5627D069-06B1-44C7-91B7-9B431F44C97E}"
+	ProjectSection(SolutionItems) = preProject
+		WE-Markdown.css = WE-Markdown.css
+		WebEssentials-Settings.json = WebEssentials-Settings.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

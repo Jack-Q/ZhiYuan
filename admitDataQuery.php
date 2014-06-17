@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ansi" />
+    <meta http-equiv="Content-Type" content="text/html" />
     <title>历年全国高校录取情况查询</title>
     <meta charset="utf-8" />
     <link href="css/admitData.css" rel="stylesheet" />
