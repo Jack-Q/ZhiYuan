@@ -1,0 +1,257 @@
+﻿
+body {
+    margin: 0;
+    padding: 50px;
+    font-family: "Microsoft YaHei UI",微软雅黑,"Segoe UI", Verdana, Helvetica,黑体, Sans-Serif;
+    -ms-transition: all ease 1s;
+    -moz-transition: all ease 1s;
+    -o-transition: all ease 1s;
+    -webkit-transition: all ease 1s;
+    transition: all ease 1s;
+}
+
+div.mainContainer {
+    width: 800px;
+    margin: 100px auto auto auto;
+    padding: 10px 0 0 0;
+    background-color: rgba(255,255,255,.95);
+    box-shadow: 5px 10px 80px 5px rgb(150,150,150);
+    border-radius: 25px 25px;
+    overflow: hidden;
+}
+
+.titleArea {
+    width: 800px;
+    height: 75px;
+    font-size: 55px;
+    font-weight: 200;
+    text-shadow: 5px 5px 25px #666;
+    text-indent: 15px;
+}
+
+    .titleArea > div {
+        float: left;
+    }
+
+
+
+#logo {
+    position: relative;
+    top: -10px;
+    left: 0;
+    height: 100px;
+    width: 100px;
+    z-index: 1;
+    background-color: #eed;
+    padding: 20px;
+    border-right: #edb solid 1px;
+    border-bottom: #edb solid 1px;
+    border-radius: 0 0 25px 0;
+    box-shadow: #bbb 5px 5px 30px;
+}
+
+.logo-dust {
+    background-color: #533dc9;
+    font-size: 0;
+    height: 1px;
+    line-height: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.logo-bond {
+    font-size: 0;
+    height: 35px;
+    line-height: 0;
+    position: absolute;
+    width: 35px;
+    background-image: url(../img/bond_b.png);
+}
+
+
+.indexContent {
+    width: 800px;
+    height: 450px;
+    margin: 10px 0 0 0;
+    padding: 0;
+    background-color: #bce0ff;
+}
+
+div.inforBox {
+    width: 500px;
+    height: 450px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+div.linkBoxWarper {
+    float: right;
+    width: 300px;
+    height: 450px;
+    background-color: #007acc;
+    color: #fff;
+    overflow: hidden;
+}
+
+div.linkTitle {
+    margin: 10px 0 20px 5px;
+    font-size: 45px;
+    color: #fff;
+    font-weight: 300;
+    text-shadow: #ccc 2px 2px 10px;
+    font-family: 'Microsoft YaHei UI', 'Segoe UI',sans-serif;
+}
+
+a.linkSelection {
+    display: block;
+    width: 300px;
+    height: 60px;
+    margin: 20px 0 0 0;
+    text-decoration: none;
+}
+
+    a.linkSelection > div {
+        color: #fff;
+        line-height: 40px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 5px;
+        font-size: 30px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 100;
+        font-family: 'Microsoft YaHei Light', 'Segoe UI Light','Microsoft YaHei UI', 'Segoe UI',sans-serif;
+        -moz-transition: all ease 500ms;
+        -o-transition: all ease 500ms;
+        -webkit-transition: all ease 500ms;
+        transition: all ease 500ms;
+    }
+
+        a.linkSelection > div:hover {
+            background-color: rgba(255,255,255,0.3);
+            padding-left: 20px;
+        }
+
+/*Picture Roller*/
+div.indexContent {
+    position: relative;
+    margin:0;
+    padding:0;
+}
+div.pictureWarper{
+    overflow:hidden;
+    width:500px;
+    height:450px;
+    position:absolute;
+    top:0;
+    left:0;
+}
+div.pictureItem {
+    position:absolute;
+    top:0;
+    left:0;
+    width: 500px;
+    height: 450px;
+    margin:0;
+    padding:0;
+}
+div.pictureItemWarper {
+    position:absolute;
+    top:0;
+    left:0;
+    width: 500px;
+    height: 450px;
+    margin:0;
+    padding:0;
+}
+
+
+div#pictureItem1 {
+    background-image: url(../img/pic_01.jpg);
+}
+
+div#pictureItem2 {
+    background-image: url(../img/pic_02.jpg);
+}
+
+div#pictureItem3 {
+    background-image: url(../img/pic_03.jpg);
+}
+
+div#pictureItem4 {
+    background-image: url(../img/pic_04.jpg);
+}
+
+div#pictureItem5 {
+    background-image: url(../img/pic_05.jpg);
+}
+
+div#pictureItem6 {
+    background-image: url(../img/pic_06.jpg);
+}
+
+div#pictureItem7 {
+    background-image: url(../img/pic_07.jpg);
+}
+
+div#pictureItem8 {
+    background-image: url(../img/pic_08.jpg);
+}
+
+div#pictureItem9 {
+    background-image: url(../img/pic_09.jpg);
+}
+
+div#pictureItem10 {
+    background-image: url(../img/pic_10.jpg);
+}
+
+div#pictureItem11 {
+    background-image: url(../img/pic_11.jpg);
+}
+
+div#pictureItem12 {
+    background-image: url(../img/pic_12.jpg);
+}
+
+div.timeInd {
+    position: absolute;
+    height: 3px;
+    width: 500px;
+    background-color: rgba(0,120,255,0.3);
+    bottom: 0;
+}
+
+    div.timeInd > div.timeCurrentBar {
+        float: left;
+        height: 3px;
+        background-color: rgba(0,120,255,0.7);
+    }
+
+    div.timeInd > div.timeCurrent {
+        float: left;
+        width: 3px;
+        height: 3px;
+        background-color: #4af;
+        border-radius: 2px;
+        box-shadow: rgba(200, 245, 255,.8) 0 0 6px 4px;
+    }
+
+div.description {
+    position: absolute;
+    right: 0;
+    background: rgba(0, 122, 204,.6);
+    bottom:50px;
+    height:45px;
+    color:#fff;
+    overflow:hidden;
+    padding:0;
+    margin:0;
+}
+div.descriptionContent{
+    line-height:35px;
+    font-size:30px;
+    padding:5px 20px 5px 25px;
+    text-shadow:#666 0 0 10px 2px;
+}

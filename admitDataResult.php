@@ -7,6 +7,15 @@
     $dataRows;
     $dataConut;
     $databaseConnection;
+    $wenliType=isset($_REQUEST['typeWL'])
+        &&(!empty($_REQUEST['typeWL']))
+        &&($_REQUEST['typeWL']=='1');
+    if($wenliType){
+        $wenliType=TRUE;
+    }else{
+        $wenliType=FALSE;
+    }
+
     function connectDatabase(){
         global $databaseConnection;
         $databaseConnection=mysql_connect(DATABASE_HOST,DATABASE_USER, DATABASE_PASSWORD);
@@ -22,6 +31,14 @@
         global $databaseConnection;
         mysql_close($databaseConnection);
         
+    }
+    function wenli2String(){
+        global $wenliType;
+        if($wenliType){
+            return '文';
+        }else{
+            return '理';
+        }
     }
     function typePC2wordPC($typePC){
         switch($typePC){
@@ -81,7 +98,7 @@
         $dataConut=mysql_num_rows($result);
         $dataRows=$result;
         $briefDescription='检索'.$YEAR_STR.'年分数在'.$lowerBnd.'到'
-            .$upperBnd.'的考生录取信息，';
+            .$upperBnd.'的考生('.wenli2String().'科)录取信息，';
         if($dataConut==0){
             $briefDescription.='未检索到结果。';
         }else{
@@ -131,7 +148,7 @@
         }
         $dataConut=mysql_num_rows($result);
         $dataRows=$result;
-        $briefDescription='检索'.$YEAR_STR.'年'.$school.'考生录取信息，';
+        $briefDescription='检索'.$YEAR_STR.'年'.$school.'考生('.wenli2String().'科)录取信息，';
         if($dataConut==0){
             $briefDescription.='未检索到结果。';
         }else{
@@ -182,7 +199,7 @@
         $dataConut=mysql_num_rows($result);
         $dataRows=$result;
         $briefDescription='检索'.$YEAR_STR.'年全省排名在'.$lowerBnd.'到'
-            .$upperBnd.'的考生录取信息，';
+            .$upperBnd.'的考生('.wenli2String().'科)录取信息，';
         if($dataConut==0){
             $briefDescription.='未检索到结果。';
         }else{
@@ -328,6 +345,14 @@
                     <?php        
                         }
                     ?>
+                </div>
+                <div class="pageNavBox">
+                    <div class="pageNavDis">
+                        每页15个结果，共500页。
+                    </div>
+                    <div>
+                    </div>
+                    <span></span>
                 </div>
             </div>
             <?php

@@ -1,0 +1,93 @@
+﻿div.AppendInfoBox{
+    width: 800px;
+    margin: 10px auto auto  auto;
+    background-color: rgba(225,225,255,.85);
+    box-shadow: 5px 10px 80px 5px rgb(150,150,150);
+    border-radius: 25px 25px;
+    height:20px;
+    font-size:16px;
+    line-height:20px;
+    padding:5px;
+    text-align:center;
+    z-index:-1;
+}
+div.AppendInfoBox>ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+div.AppendInfoBox>ul>li{
+    display:inline-block;
+    margin:0 5px 0 5px;
+    padding:0 5px 0 5px;
+    position:relative;
+    top:0;
+    left:0;
+    cursor:default;
+    border-radius:3px;
+    -moz-transition: all ease-in-out 300ms;
+    -o-transition: all ease-in-out 300ms;
+    -webkit-transition: all ease-in-out 300ms;
+    transition: all ease-in-out 300ms;
+}
+div.append-pop-box {
+    position: absolute;
+    z-index: 5;
+    opacity: 0;
+    border: solid 1px #ddd;
+    background-color: #fff;
+    box-shadow: 5px 10px 80px 5px rgb(150,150,150);
+    bottom: 60px;
+    border-radius: 10px;
+    pointer-events: none;
+    padding:10px;
+    -moz-transition: all ease-in-out 300ms;
+    -o-transition: all ease-in-out 300ms;
+    -webkit-transition: all ease-in-out 300ms;
+    transition: all ease-in-out 300ms;
+    text-align:left;
+    te
+}
+li.append-list-item:hover{
+    background-color:rgba(100,100,100,0.3);
+}
+li.append-list-item:hover >div.append-pop-box{
+    opacity:0.95;
+    bottom:35px;
+}
+span.tooltip-title{
+    font-weight:400;
+    font-size:25px;
+    display:block;
+    text-shadow:4px 4px 8px #666;
+    margin:5px 0 10px 0;
+}
+div.broswerTooltip{
+    height:200px;
+    width:330px;
+    left:-100px;
+}
+div.tosTooltip{
+    height:500px;
+    width:500px;
+    left:-170px;
+    font-size:12px;
+    line-height:12.5px;
+
+}
+div.tosTooltip p{
+    margin:0;
+    padding:0;
+}
+div.authorTooltip{
+    height:200px;
+    width:300px;
+    left:-110px;
+    font-weight:400;
+    font-size:20px;
+    line-height:25px;
+}
+div.authorTooltip p{
+    margin:0;
+    padding:0;
+}
