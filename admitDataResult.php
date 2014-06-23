@@ -73,6 +73,36 @@
                 return '';
         }
     }
+    function year2yearType($yearStr){
+        switch ($yearStr) {
+            case '2013' : return 2;
+            case '2012' : return 3;
+            case '2011' : return 4;
+            default : return 0;
+        }
+    }
+    function fillHTMLRow($RowLine,$line){
+        echo '<tr><td>'.($line+1).'</td>'; 
+        echo '<td><a href="admitDataResult.php?queryType=1&typeWL='.($wenliType?1:0).'&queryYear=0&SchoolName='
+            .urlencode($RowLine[0]).'">'.$RowLine[0].'<div class="resultTooltip1">查看近三年'
+			.$RowLine[0].wenli2String().'科考生录取情况</div></a></td>';
+        echo '<td><a href="admitDataResult.php?queryType=3&typeWL='.($wenliType?1:0).'&queryYear=0&SchoolName='
+            .urlencode($RowLine[0]).'&MajorName='.urlencode($RowLine[1]).'">'.$RowLine[1]
+			.'<div class="resultTooltip2">查看近三年'.$RowLine[0]
+			.$RowLine[1].'专业考生录取情况</div></a></td>';
+        echo '<td>'.$RowLine[2].'</td>';
+        echo '<td>'.$RowLine[3].'</td>';
+        echo '<td>'.$RowLine[4].'</td>';
+        if($RowLine[7]=='Pre'){
+            echo '<td><a href="admitDataResult.php?queryType=4&queryYear='
+                .year2yearType($RowLine[8]).'&typeWL='.($wenliType?1:0).'">'.typePC2wordPC($RowLine[7])
+				.'<div class="resultTooltip3">查看'.$RowLine[8].'年'
+                .wenli2String().'科提前批次录取情况</div></a></td>';
+        }else{
+            echo '<td>'.typePC2wordPC($RowLine[7]).'</td>';
+        }
+        echo '<td>'.$RowLine[8].'</td></tr>';
+    }
     function fetchDataByScore($lowerBnd,$upperBnd,$yearInd){
         global $databaseConnection;
         global $errorOccurance;
@@ -119,7 +149,7 @@
         $dataConut=mysql_num_rows($result);
         $dataRows=$result;
         $briefDescription='检索'.$YEAR_STR.'年分数在'.$lowerBnd.'到'
-            .$upperBnd.'的考生('.wenli2String().'科)录取信息，';
+            .$upperBnd.'的考生('.wenli2String().'科)录取考生录取信息,';
         if($dataConut==0){
             $briefDescription.='未检索到结果。';
         }else{
@@ -171,7 +201,7 @@
         }
         $dataConut=mysql_num_rows($result);
         $dataRows=$result;
-        $briefDescription='检索'.$YEAR_STR.'年'.$school.'考生('.wenli2String().'科)录取信息，';
+        $briefDescription='检索'.$YEAR_STR.'年'.$school.'考生('.wenli2String().'科)录取考生录取信息,';
         if($dataConut==0){
             $briefDescription.='未检索到结果。';
         }else{
@@ -224,7 +254,111 @@
         $dataConut=mysql_num_rows($result);
         $dataRows=$result;
         $briefDescription='检索'.$YEAR_STR.'年全省排名在'.$lowerBnd.'到'
-            .$upperBnd.'的考生('.wenli2String().'科)录取信息，';
+            .$upperBnd.'的考生('.wenli2String().'科)录取考生录取信息,';
+        if($dataConut==0){
+            $briefDescription.='未检索到结果。';
+        }else{
+            $briefDescription.='检索到'.$dataConut.'个结果。';
+        }
+    }
+    function fetchDataBySchoolAndMajor($school,$major,$yearInd){
+        global $databaseConnection;
+        global $errorOccurance;
+        global $dataConut;
+        global $dataRows;
+        global $briefDescription;
+        global $wenliType;
+        $YEAR_STR;
+        $queryStr='SELECT * FROM AdmitInfo WHERE ( College = "';
+        $queryStr.=$school;
+        $queryStr.='" ) AND ( Major ="';
+        $queryStr.=$major;
+        $queryStr.='" ) AND ';
+        switch($yearInd){
+            case '0':
+                $YEAR_STR='近三';
+                $queryStr.='( Year BETWEEN 2011 AND 2013 )';
+                break;
+            case '1':
+                $YEAR_STR='近两';
+                $queryStr.='( Year BETWEEN 2012 AND 2013 )';
+                break;
+            case '2':
+                $YEAR_STR='2013';
+                $queryStr.='( Year = 2013 )';
+                break;
+            case '3':
+                $YEAR_STR='2012';
+                $queryStr.='( Year = 2012 )';
+                break;
+            case '4':
+                $YEAR_STR='2011';
+                $queryStr.='( Year = 2011 )';
+                break;
+            default:
+                $YEAR_STR='';
+                $errorOccurance=TRUE;
+        }
+        $queryStr.=$wenliType?'AND ( TypeWL = "W") ':'AND ( TypeWL = "L") ';
+        $queryStr.=' ORDER BY Year DESC , Rank';
+        $result=mysql_query($queryStr,$databaseConnection);
+        if(!$result){
+            $errorOccurance=TRUE;
+            return;
+        }
+        $dataConut=mysql_num_rows($result);
+        $dataRows=$result;
+        $briefDescription='检索'.$YEAR_STR.'年'.$school.$major.'专业考生录取信息,';
+        if($dataConut==0){
+            $briefDescription.='未检索到结果。';
+        }else{
+            $briefDescription.='检索到'.$dataConut.'个结果。';
+        }
+    }
+    function fetchDataByPreAdmissionYear($yearInd){        
+        global $databaseConnection;
+        global $errorOccurance;
+        global $dataConut;
+        global $dataRows;
+        global $briefDescription;
+        global $wenliType;
+        $YEAR_STR;
+        $queryStr='SELECT * FROM AdmitInfo WHERE ( TypePC = "Pre" ) AND ';
+        switch($yearInd){
+            case '0':
+                $YEAR_STR='近三';
+                $queryStr.='( Year BETWEEN 2011 AND 2013 )';
+                break;
+            case '1':
+                $YEAR_STR='近两';
+                $queryStr.='( Year BETWEEN 2012 AND 2013 )';
+                break;
+            case '2':
+                $YEAR_STR='2013';
+                $queryStr.='( Year = 2013 )';
+                break;
+            case '3':
+                $YEAR_STR='2012';
+                $queryStr.='( Year = 2012 )';
+                break;
+            case '4':
+                $YEAR_STR='2011';
+                $queryStr.='( Year = 2011 )';
+                break;
+            default:
+                $YEAR_STR='';
+                $errorOccurance=TRUE;
+        }
+        $queryStr.=$wenliType?' AND ( TypeWL = "W") ':'AND ( TypeWL = "L") ';
+        $queryStr.=' ORDER BY Rank , Year DESC';
+        $result=mysql_query($queryStr,$databaseConnection);
+        if(!$result){
+            $errorOccurance=TRUE;
+            return;
+        }
+        $dataConut=mysql_num_rows($result);
+        $dataRows=$result;
+        $briefDescription='检索'.$YEAR_STR.'年提前批次'.wenli2String().'科考生录取信息,';
         if($dataConut==0){
             $briefDescription.='未检索到结果。';
         }else{
@@ -235,6 +369,7 @@
         $selectType=$_GET['queryType'];
         switch ($selectType){
             case '0':
+                //By Score
                 if(isset($_GET['queryYear'],$_GET['lowerBound'],$_GET['upperBound'])){
                     $lowerBound=intval(trim($_GET['lowerBound']));
                     $upperBound=intval(trim($_GET['upperBound']));
@@ -251,10 +386,11 @@
                 }
                 break;
             case '1':
+                //By School
                 if(isset($_GET['queryYear'],$_GET['SchoolName'])&&!empty($_GET['SchoolName'])){
                     $school=trim($_GET['SchoolName']);
                     $yearType=$_GET['queryYear'];
-                    if(!($lowerBound>$upperBound)){
+                    if($school){
                         connectDatabase();
                         fetchDataBySchool($school,$yearType);
                         closeDataBase();
@@ -266,6 +402,7 @@
                 }
                 break;
             case '2':
+                //By Rank
                 if(isset($_GET['queryYear'],$_GET['lowerBound'],$_GET['upperBound'])){
                     $lowerBound=intval(trim($_GET['lowerBound']));
                     $upperBound=intval(trim($_GET['upperBound']));
@@ -281,12 +418,45 @@
                     $errorOccurance=TRUE;
                 }
                 break;
+            case '3':
+                //By School & Major
+                if(isset($_GET['queryYear'],$_GET['SchoolName'],$_GET['MajorName'])
+                    &&!empty($_GET['SchoolName'])
+                    &&!empty($_GET['MajorName'])){
+                    $school=trim($_GET['SchoolName']);
+                    $major=trim($_GET['MajorName']);
+                    $yearType=$_GET['queryYear'];
+                    if($school&&$major){
+                        connectDatabase();
+                        fetchDataBySchoolAndMajor($school,$major,$yearType);
+                        closeDataBase();
+                    }else{
+                        $errorOccurance=TRUE;
+                    }                    
+                }else{
+                    $errorOccurance=TRUE;
+                }
+                break;
+            case '4':
+                //By Pre Admission Year
+                if(isset($_GET['queryYear'])){
+                    $yearType=$_GET['queryYear'];
+                    connectDatabase();
+                    fetchDataByPreAdmissionYear($yearType);
+                    closeDataBase();
+                }else{
+                    $errorOccurance=TRUE;
+                }
+                break;
+
             default:
             $errorOccurance=TRUE;
         }
     }else{
         $errorOccurance=TRUE;
     }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -363,27 +533,13 @@
                                 for($i=0;$i<$maxRow;$i++){
                                     $row=mysql_fetch_row($dataRows);
                                     if($i>=$minRow){
-                                        echo '<tr><td>'.($i+1).'</td>';
-                                        echo '<td>'.$row[0].'</td>';
-                                        echo '<td>'.$row[1].'</td>';
-                                        echo '<td>'.$row[2].'</td>';
-                                        echo '<td>'.$row[3].'</td>';
-                                        echo '<td>'.$row[4].'</td>';
-                                        echo '<td>'.typePC2wordPC($row[7]).'</td>';
-                                        echo '<td>'.$row[8].'</td></tr>';
+                                        fillHTMLRow($row,$i);
                                     }
                                 }
                             }else{
                                 for($i=0;$i<15;$i++){
                                     $row=mysql_fetch_row($dataRows);
-                                    echo '<tr><td>'.($i+1).'</td>';
-                                    echo '<td>'.$row[0].'</td>';
-                                    echo '<td>'.$row[1].'</td>';
-                                    echo '<td>'.$row[2].'</td>';
-                                    echo '<td>'.$row[3].'</td>';
-                                    echo '<td>'.$row[4].'</td>';
-                                    echo '<td>'.typePC2wordPC($row[7]).'</td>';
-                                    echo '<td>'.$row[8].'</td></tr>';
+                                    fillHTMLRow($row,$i);
                                 }
                             }
                                                             
@@ -410,14 +566,7 @@
                         <?php
                             for($i=0;$i<$dataConut;$i++){
                                 $row=mysql_fetch_row($dataRows);
-                                echo '<tr><td>'.($i+1).'</td>';
-                                echo '<td>'.$row[0].'</td>';
-                                echo '<td>'.$row[1].'</td>';
-                                echo '<td>'.$row[2].'</td>';
-                                echo '<td>'.$row[3].'</td>';
-                                echo '<td>'.$row[4].'</td>';
-                                echo '<td>'.typePC2wordPC($row[7]).'</td>';
-                                echo '<td>'.$row[8].'</td></tr>';
+                                fillHTMLRow($row,$i);
                             }                                
                         ?>
                         </tbody>
@@ -426,6 +575,7 @@
                         }
                     ?>
                 </div>
+                <div class="pageNavBox">
                 <?php
                     if($dataConut>15){
                         $pagesCount=ceil($dataConut/15);
@@ -444,7 +594,6 @@
                             }
                         }
                 ?>
-                <div class="pageNavBox">
                     <div class="pageNavNums">
                         <?php
                             if($pagesCount<=7){
@@ -546,10 +695,10 @@
                             echo $pagesCount;
                         ?>页。
                     </div>
-                </div>
                 <?php
                     }
                 ?>
+                </div>
             </div>
             <?php
                 }

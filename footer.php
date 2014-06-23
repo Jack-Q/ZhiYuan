@@ -2,7 +2,7 @@
     <div class="AppendInfoBox">
         <ul>
             <li>
-                Version 0.9.1 beta
+                Version 0.9.2 beta
             </li>
             <li>
                 &copy;2014 星空之蓝小组
@@ -16,6 +16,7 @@
                         <p>数据：乔波、吴璇、王圣元</p>
                         <p>网页代码：乔波</p>
                         <p>外观设计：乔波、吴璇、王圣元</p>
+                        <p>测试人员：王圣元、许圣华</p>
                         <p>赞助、特别鸣谢：李伯轩</p>
                     </div>
                 </div>
