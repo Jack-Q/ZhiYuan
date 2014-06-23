@@ -367,27 +367,28 @@ span.lv1-width1, span.lv1-width2, span.lv1-width3, span.lv1-width4 {
     font-size: 25px;
     line-height: 28px;
     cursor: pointer;
+
 }
 
 span.lv1-width1 {
     width: 40px;
-    background-color: #9898ff;
+    background-color: #7cf;
     text-align: center;
 }
 
 span.lv1-width2 {
     width: 50px;
-    background-color: #47cf74;
+    background-color: #7cf;
 }
 
 span.lv1-width3 {
     width: 75px;
-    background-color: #ff6f6f;
+    background-color: #7cf;
 }
 
 span.lv1-width4 {
     width: 100px;
-    background-color: #58b1fc;
+    background-color: #7cf;
 }
 
 /*LEVEL TWO MODE*/

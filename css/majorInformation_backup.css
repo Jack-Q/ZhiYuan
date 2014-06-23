@@ -367,28 +367,27 @@ span.lv1-width1, span.lv1-width2, span.lv1-width3, span.lv1-width4 {
     font-size: 25px;
     line-height: 28px;
     cursor: pointer;
-    color: #fff;
 }
 
 span.lv1-width1 {
     width: 40px;
-    background-color: #293cc7;
+    background-color: #9898ff;
     text-align: center;
 }
 
 span.lv1-width2 {
     width: 50px;
-    background-color: #293cc7;
+    background-color: #47cf74;
 }
 
 span.lv1-width3 {
     width: 75px;
-    background-color: #293cc7;
+    background-color: #ff6f6f;
 }
 
 span.lv1-width4 {
     width: 100px;
-    background-color: #293cc7;
+    background-color: #58b1fc;
 }
 
 /*LEVEL TWO MODE*/
@@ -534,8 +533,6 @@ div.lv2-selector {
     -o-transition: all ease 1500ms;
     -webkit-transition: all ease 1500ms;
     transition: all ease 1500ms;
-    background-color: #27af44 !important;
-    color: #fff;
 }
 /*Level 3 Mode*/
 

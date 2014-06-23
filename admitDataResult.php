@@ -15,7 +15,26 @@
     }else{
         $wenliType=FALSE;
     }
-
+    $pageOffset=isset($_GET['offset'])
+        &&(!empty($_GET['offset']))
+        &&(intval(trim($_GET['offset'])));
+    if($pageOffset){
+        $pageOffset=intval(trim($_GET['offset']));
+    }else{
+        $pageOffset=1;
+    }
+    
+    function curPageURL() {
+        $pageURL = 'http';
+        if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+            $pageURL .= "://";
+        if ($_SERVER["SERVER_PORT"] != "80") {
+            $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+        } else {
+            $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+        }
+        return $pageURL;
+    }
     function connectDatabase(){
         global $databaseConnection;
         $databaseConnection=mysql_connect(DATABASE_HOST,DATABASE_USER, DATABASE_PASSWORD);
@@ -60,6 +79,7 @@
         global $dataConut;
         global $dataRows;
         global $briefDescription;
+        global $wenliType;
         $YEAR_STR;
         $queryStr='SELECT * FROM AdmitInfo WHERE ( Score BETWEEN ';
         $queryStr.=$lowerBnd.' AND '.$upperBnd;
@@ -89,6 +109,7 @@
                 $YEAR_STR='';
                 $errorOccurance=TRUE;
         }
+        $queryStr.=$wenliType?'AND ( TypeWL = "W") ':'AND ( TypeWL = "L") ';
         $queryStr.=' ORDER BY Score DESC , Year DESC';
         $result=mysql_query($queryStr,$databaseConnection);
         if(!$result){
@@ -111,6 +132,7 @@
         global $dataConut;
         global $dataRows;
         global $briefDescription;
+        global $wenliType;
         $YEAR_STR;
         $queryStr='SELECT * FROM AdmitInfo WHERE ( College = "';
         $queryStr.=$school;
@@ -140,6 +162,7 @@
                 $YEAR_STR='';
                 $errorOccurance=TRUE;
         }
+        $queryStr.=$wenliType?'AND ( TypeWL = "W") ':'AND ( TypeWL = "L") ';
         $queryStr.=' ORDER BY Rank , Year DESC';
         $result=mysql_query($queryStr,$databaseConnection);
         if(!$result){
@@ -161,6 +184,7 @@
         global $dataConut;
         global $dataRows;
         global $briefDescription;
+        global $wenliType;
         $YEAR_STR;
         $queryStr='SELECT * FROM AdmitInfo WHERE ( Rank BETWEEN ';
         $queryStr.=$lowerBnd.' AND '.$upperBnd;
@@ -190,6 +214,7 @@
                 $YEAR_STR='';
                 $errorOccurance=TRUE;
         }
+        $queryStr.=$wenliType?'AND ( TypeWL = "W") ':'AND ( TypeWL = "L") ';
         $queryStr.=' ORDER BY Rank , Year DESC';
         $result=mysql_query($queryStr,$databaseConnection);
         if(!$result){
@@ -271,6 +296,7 @@
     <title>历年高校录取情况查询结果</title>
     <meta charset="utf-8" />
     <link href="css/admitDataResult.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
 </head>
 <body>
     <div class="mainContainer">
@@ -311,6 +337,60 @@
                         <p> Oops! No results were found.</p>
                     </div>
                     <?php        
+                        }elseif($dataConut>15){
+                    ?>
+                    <table id="resultTable" cellspacing="0" >
+                        <thead>
+                            <tr>
+                                <td width="5%">序号</td>
+                                <td width="30%">学校</td>
+                                <td width="25%">专业</td>
+                                <td width="9%">全省排名</td>
+                                <td width="5%">分数</td>
+                                <td width="3%"><abbr title="本位次录取人数">人数</abbr></td>
+                                <td width="8%">批次</td>
+                                <td width="5%">年份</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                            
+                            $pagesCount=ceil($dataConut/15);
+                            
+                            if($pageOffset>1&&$pageOffset<=$pagesCount){
+                                $minRow=15*$pageOffset-15;
+                                $maxRow=15*$pageOffset<$dataConut?15*$pageOffset:$dataConut;
+                                for($i=0;$i<$maxRow;$i++){
+                                    $row=mysql_fetch_row($dataRows);
+                                    if($i>=$minRow){
+                                        echo '<tr><td>'.($i+1).'</td>';
+                                        echo '<td>'.$row[0].'</td>';
+                                        echo '<td>'.$row[1].'</td>';
+                                        echo '<td>'.$row[2].'</td>';
+                                        echo '<td>'.$row[3].'</td>';
+                                        echo '<td>'.$row[4].'</td>';
+                                        echo '<td>'.typePC2wordPC($row[7]).'</td>';
+                                        echo '<td>'.$row[8].'</td></tr>';
+                                    }
+                                }
+                            }else{
+                                for($i=0;$i<15;$i++){
+                                    $row=mysql_fetch_row($dataRows);
+                                    echo '<tr><td>'.($i+1).'</td>';
+                                    echo '<td>'.$row[0].'</td>';
+                                    echo '<td>'.$row[1].'</td>';
+                                    echo '<td>'.$row[2].'</td>';
+                                    echo '<td>'.$row[3].'</td>';
+                                    echo '<td>'.$row[4].'</td>';
+                                    echo '<td>'.typePC2wordPC($row[7]).'</td>';
+                                    echo '<td>'.$row[8].'</td></tr>';
+                                }
+                            }
+                                                            
+                        ?>
+                        </tbody>
+                    </table>
+                    <?php        
                         }else{
                     ?>
                     <table id="resultTable" cellspacing="0" >
@@ -346,20 +426,137 @@
                         }
                     ?>
                 </div>
+                <?php
+                    if($dataConut>15){
+                        $pagesCount=ceil($dataConut/15);
+                        $curURL=curPageURL();
+                        $curURL_offsetPos=strpos($curURL,'offset');
+                        if($curURL_offsetPos===FALSE){
+                            $newURLBase=$curURL.'&offset=';
+                        }else{
+                            $curURL_hashPos=strpos($curURL,'&',$curURL_offsetPos);
+                            if($curURL_hashPos==FALSE){
+                                $newURLBase=substr($curURL,0,strpos($curURL,'=',$curURL_offsetPos)+1);
+                            }else{
+                                $newURLBase_Part1=substr($curURL,0,$curURL_offsetPos);
+                                $newURLBase_Part2=substr($curURL,$curURL_hashPos+1,strlen($curURL));
+                                $newURLBase=$newURLBase_Part1.$newURLBase_Part2.'&offset=';
+                            }
+                        }
+                ?>
                 <div class="pageNavBox">
+                    <div class="pageNavNums">
+                        <?php
+                            if($pagesCount<=7){
+                                if($pageOffset==1){
+                                    //First Page
+                                    for($i=1;$i<=$pagesCount;$i++){
+                                        if($i===$pageOffset){
+                                            echo '<span class="pageNavNums-on">'.$i.'</span>';
+                                        }else{
+                                            echo '<span><a href="'.$newURLBase.$i.'">'.$i.'</a></span>';
+                                        }
+                                    }
+                                    echo '<span title="下一页"><a href="'.$newURLBase.($pageOffset+1).'">&gt;</a></span>';
+                                }elseif($pageOffset==$pagesCount){
+                                    //Last Page
+                                    echo '<span title="上一页"><a href="'.$newURLBase.($pageOffset-1).'">&lt;</a></span>';
+                                    for($i=1;$i<=$pagesCount;$i++){
+                                        if($i===$pageOffset){
+                                            echo '<span class="pageNavNums-on">'.$i.'</span>';
+                                        }else{
+                                            echo '<span><a href="'.$newURLBase.$i.'">'.$i.'</a></span>';
+                                        }
+                                    }
+                                }else{
+                                    echo '<span title="上一页"><a href="'.$newURLBase.($pageOffset-1).'">&lt;</a></span>';
+                                    for($i=1;$i<=$pagesCount;$i++){
+                                        if($i===$pageOffset){
+                                            echo '<span class="pageNavNums-on">'.$i.'</span>';
+                                        }else{
+                                            echo '<span><a href="'.$newURLBase.$i.'">'.$i.'</a></span>';
+                                        }
+                                    }
+                                    echo '<span title="下一页"><a href="'.$newURLBase.($pageOffset+1).'">&gt;</a></span>';
+                                }
+                            }else{
+                                if($pageOffset==1){
+                                    echo '<span class="pageNavNums-on">1</span>';
+                                    echo '<span><a href="'.$newURLBase.'2">2</a></span>';
+                                    echo '<span><a href="'.$newURLBase.'3">3</a></span>';
+                                    echo '<span><a href="'.$newURLBase.'4">4</a></span>';
+                                    echo '<span><a href="'.$newURLBase.'5">5</a></span>';
+                                    echo '<span>...</span>';
+                                    echo '<span><a href="'.$newURLBase.$pagesCount.'">'.$pagesCount.'</a></span>';
+                                    echo '<span title="下一页"><a href="'.$newURLBase.($pageOffset+1).'">&gt;</a></span>';
+                                }elseif($pageOffset==$pagesCount){
+                                    echo '<span title="上一页"><a href="'.$newURLBase.($pageOffset-1).'">&lt;</a></span>';
+                                    echo '<span><a href="'.$newURLBase.'1">1</a></span>';
+                                    echo '<span>...</span>';
+                                    echo '<span><a href="'.$newURLBase.($pagesCount-4).'">'.($pagesCount-4).'</a></span>';
+                                    echo '<span><a href="'.$newURLBase.($pagesCount-3).'">'.($pagesCount-3).'</a></span>';
+                                    echo '<span><a href="'.$newURLBase.($pagesCount-2).'">'.($pagesCount-2).'</a></span>';
+                                    echo '<span><a href="'.$newURLBase.($pagesCount-1).'">'.($pagesCount-1).'</a></span>';
+                                    echo '<span class="pageNavNums-on">'.$pagesCount.'</span>';
+                                }elseif($pageOffset<=4){
+                                    echo '<span title="上一页"><a href="'.$newURLBase.($pageOffset-1).'">&lt;</a></span>';
+                                    echo '<span><a href="'.$newURLBase.'1">1</a></span>';
+                                    
+                                    echo $pageOffset==2?'<span class="pageNavNums-on">2</span>':'<span><a href="'.$newURLBase.'2">2</a></span>';
+                                    echo $pageOffset==3?'<span class="pageNavNums-on">3</span>':'<span><a href="'.$newURLBase.'3">3</a></span>';
+                                    echo $pageOffset==4?'<span class="pageNavNums-on">4</span>':'<span><a href="'.$newURLBase.'4">4</a></span>';
+
+                                    echo '<span><a href="'.$newURLBase.'5">5</a></span>';
+                                    echo '<span>...</span>';
+                                    echo '<span><a href="'.$newURLBase.$pagesCount.'">'.$pagesCount.'</a></span>';
+                                    echo '<span title="下一页"><a href="'.$newURLBase.($pageOffset+1).'">&gt;</a></span>';
+                                    
+                                }elseif($pageOffset>=$pagesCount-3){
+                                    echo '<span title="上一页"><a href="'.$newURLBase.($pageOffset-1).'">&lt;</a></span>';
+                                    echo '<span><a href="'.$newURLBase.'1">1</a></span>';
+                                    echo '<span>...</span>';
+                                    echo '<span><a href="'.$newURLBase.($pagesCount-4).'">'.($pagesCount-4).'</a></span>';
+
+                                    echo $pageOffset==($pagesCount-3)?'<span class="pageNavNums-on">'.($pagesCount-3).'</span>'
+                                        :'<span><a href="'.$newURLBase.($pagesCount-3).'">'.($pagesCount-3).'</a></span>';
+                                    echo $pageOffset==($pagesCount-2)?'<span class="pageNavNums-on">'.($pagesCount-2).'</span>'
+                                        :'<span><a href="'.$newURLBase.($pagesCount-2).'">'.($pagesCount-2).'</a></span>';
+                                    echo $pageOffset==($pagesCount-1)?'<span class="pageNavNums-on">'.($pagesCount-1).'</span>'
+                                        :'<span><a href="'.$newURLBase.($pagesCount-1).'">'.($pagesCount-1).'</a></span>';
+                                    
+                                    echo '<span><a href="'.$newURLBase.$pagesCount.'">'.$pagesCount.'</a></span>';
+                                    echo '<span title="下一页"><a href="'.$newURLBase.($pageOffset+1).'">&gt;</a></span>';
+                                    
+                                }else{
+                                    echo '<span title="上一页"><a href="'.$newURLBase.($pageOffset-1).'">&lt;</a></span>';
+                                    echo '<span><a href="'.$newURLBase.'1">1</a></span>';
+                                    echo '<span>...</span>';
+                                    echo '<span><a href="'.$newURLBase.($pageOffset-1).'">'.($pageOffset-1).'</a></span>';
+                                    echo '<span class="pageNavNums-on">'.$pageOffset.'</span>';
+                                    echo '<span><a href="'.$newURLBase.($pageOffset+1).'">'.($pageOffset+1).'</a></span>';
+                                    echo '<span>...</span>';
+                                    echo '<span><a href="'.$newURLBase.$pagesCount.'">'.$pagesCount.'</a></span>';
+                                    echo '<span title="下一页"><a href="'.$newURLBase.($pageOffset+1).'">&gt;</a></span>';
+                                }
+                            }
+                        ?>
+                    </div>
                     <div class="pageNavDis">
-                        每页15个结果，共500页。
+                        每页15个结果，共<?php
+                            echo $pagesCount;
+                        ?>页。
                     </div>
-                    <div>
-                    </div>
-                    <span></span>
                 </div>
+                <?php
+                    }
+                ?>
             </div>
             <?php
                 }
             ?>
         </div>
     </div>
-
+    
+    <?php include('footer.php')?>
 </body>
 </html>

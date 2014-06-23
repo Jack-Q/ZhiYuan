@@ -10,6 +10,7 @@
     <meta charset="utf-8" />
     <link href="css/admitData.css" rel="stylesheet" />
     <script src="script/admitData.js"></script>
+    <link href="css/common.css" rel="stylesheet" />
 </head>
 <body>
     <div class="mainContainer">
@@ -46,6 +47,13 @@
                             <form id="queryByScore" method="get" action="admitDataResult.php">
                                 <input type="hidden" name="queryType" value="0" />
                                 <div class="formSet">
+                                    <span class="label">文理科</span>
+                                    <input type="radio" value="0" name="typeWL" checked="checked" title="理科" />
+                                    <label for="typeWL">理科</label>
+                                    <input type="radio" value="1" name="typeWL" title="文科" />
+                                    <label for="typeWL">文科</label>
+                                </div>
+                                <div class="formSet">
                                     <span class="label">查询年份</span>
                                     <select id="queryYear" name="queryYear">
                                         <optgroup label="综合">
@@ -79,6 +87,13 @@
                         <div>
                             <form id="queryBySchool" method="get" action="admitDataResult.php">
                                 <input type="hidden" name="queryType" value="1" />
+                                <div class="formSet">
+                                    <span class="label">文理科</span>
+                                    <input type="radio" value="0" name="typeWL" checked="checked" title="理科" />
+                                    <label for="typeWL">理科</label>
+                                    <input type="radio" value="1" name="typeWL" title="文科" />
+                                    <label for="typeWL">文科</label>
+                                </div>
                                 <div class="formSet">
                                     <span class="label">查询年份</span>
                                     <select id="queryYear" name="queryYear">
@@ -166,6 +181,13 @@
                             <form id="queryByScore" method="get" action="admitDataResult.php">
                                 <input type="hidden" name="queryType" value="2" />
                                 <div class="formSet">
+                                    <span class="label">文理科</span>
+                                    <input type="radio" value="0" name="typeWL" checked="checked" title="理科" />
+                                    <label for="typeWL">理科</label>
+                                    <input type="radio" value="1" name="typeWL" title="文科" />
+                                    <label for="typeWL">文科</label>
+                                </div>
+                                <div class="formSet">
                                     <span class="label">查询年份</span>
                                     <select id="queryYear" name="queryYear">
                                         <optgroup label="综合">
@@ -196,6 +218,7 @@
             </div>
         </div>
     </div>
-
+    
+    <?php include('footer.php')?>
 </body>
 </html>

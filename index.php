@@ -15,28 +15,40 @@
                     <div id="logo"></div>
                 </a>
             </div>
-            <div>&nbsp;&nbsp;&nbsp;[__Title__]&nbsp;&nbsp;&nbsp;<sup style="font-size: 0.4em; color: #4af; -ms-word-wrap: break-word; word-wrap: break-word;">beta</sup></div>
+            <div>星空之蓝志愿填报辅助系统<sup style="font-size: 0.4em; color: #4af; -ms-word-wrap: break-word; word-wrap: break-word;">beta</sup></div>
         </div>
         <div class="indexContent">
             <div class="linkBoxWarper">
                 <div class="linkBox">
                     <div class="linkTitle">
-                        Modules
+                        模块选择
                     </div>
                     <a class="linkSelection" href="admitDataQuery.php">
                         <div>
-                            Admission Query
+                            <svg viewBox="-10 -10 120 120" width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#fff" stroke="#fff" d="M 49.728 100 C 28.272 100 8.345 85.217 2.348 64.838 C -1.614 53.198 -0.53 39.666 5.361 27.793 C 11.253 15.891 21.388 6.811 33.167 2.882 C 38.436 0.976 44.086 0 49.905 0 C 62.263 0 74.345 4.543 83.062 12.456 C 97.088 24.541 103.244 44.73 98.323 62.661 C 93.491 82.001 76.3 97.161 56.523 99.484 C 54.34 99.825 52.037 100 49.728 100 Z M 49.905 3.873 C 44.537 3.873 39.323 4.771 34.428 6.541 C 23.582 10.157 14.262 18.526 8.825 29.514 C 3.397 40.468 2.384 52.916 6.036 63.664 C 11.49 82.206 30.263 96.132 49.727 96.132 C 51.833 96.132 53.937 95.967 55.998 95.648 C 74.282 93.5 90.115 79.534 94.581 61.676 C 99.124 45.116 93.455 26.52 80.493 15.356 C 72.453 8.045 61.323 3.873 49.905 3.873 Z"></path>
+                                <path fill="#fff" stroke="#fff" d="M 24.78 54.784 C 24.78 51.559 24.78 48.326 24.78 45.068 C 35.779 45.082 46.767 45.082 57.777 45.082 C 52.942 40.465 48.02 35.918 43.251 31.237 C 47.393 31.378 51.603 30.906 55.708 31.616 C 62.487 37.429 68.811 43.776 75.271 49.94 C 68.589 56.208 62.006 62.6 55.235 68.775 C 51.185 68.774 47.135 68.775 43.082 68.775 C 47.827 63.946 52.828 59.369 57.778 54.731 C 46.768 54.802 35.779 54.73 24.78 54.784 Z"></path>
+                            </svg>
+                            往年录取查询
                         </div>
                     </a>
 
-                    <a class="linkSelection" href="majorInformation.html">
+                    <a class="linkSelection" href="majorInformation.php">
                         <div>
-                            Major Information
+                            <svg viewBox="-10 -10 120 120" width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#fff" stroke="#fff" d="M 49.728 100 C 28.272 100 8.345 85.217 2.348 64.838 C -1.614 53.198 -0.53 39.666 5.361 27.793 C 11.253 15.891 21.388 6.811 33.167 2.882 C 38.436 0.976 44.086 0 49.905 0 C 62.263 0 74.345 4.543 83.062 12.456 C 97.088 24.541 103.244 44.73 98.323 62.661 C 93.491 82.001 76.3 97.161 56.523 99.484 C 54.34 99.825 52.037 100 49.728 100 Z M 49.905 3.873 C 44.537 3.873 39.323 4.771 34.428 6.541 C 23.582 10.157 14.262 18.526 8.825 29.514 C 3.397 40.468 2.384 52.916 6.036 63.664 C 11.49 82.206 30.263 96.132 49.727 96.132 C 51.833 96.132 53.937 95.967 55.998 95.648 C 74.282 93.5 90.115 79.534 94.581 61.676 C 99.124 45.116 93.455 26.52 80.493 15.356 C 72.453 8.045 61.323 3.873 49.905 3.873 Z"></path>
+                                <path fill="#fff" stroke="#fff" d="M 24.78 54.784 C 24.78 51.559 24.78 48.326 24.78 45.068 C 35.779 45.082 46.767 45.082 57.777 45.082 C 52.942 40.465 48.02 35.918 43.251 31.237 C 47.393 31.378 51.603 30.906 55.708 31.616 C 62.487 37.429 68.811 43.776 75.271 49.94 C 68.589 56.208 62.006 62.6 55.235 68.775 C 51.185 68.774 47.135 68.775 43.082 68.775 C 47.827 63.946 52.828 59.369 57.778 54.731 C 46.768 54.802 35.779 54.73 24.78 54.784 Z"></path>
+                            </svg>
+                            专业介绍
                         </div>
                     </a>
-                    <a class="linkSelection" href="careerInformation.html">
+                    <a class="linkSelection" href="careerInformation.php">
                         <div>
-                            Career Information
+                            <svg viewBox="-10 -10 120 120" width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#fff" stroke="#fff" d="M 49.728 100 C 28.272 100 8.345 85.217 2.348 64.838 C -1.614 53.198 -0.53 39.666 5.361 27.793 C 11.253 15.891 21.388 6.811 33.167 2.882 C 38.436 0.976 44.086 0 49.905 0 C 62.263 0 74.345 4.543 83.062 12.456 C 97.088 24.541 103.244 44.73 98.323 62.661 C 93.491 82.001 76.3 97.161 56.523 99.484 C 54.34 99.825 52.037 100 49.728 100 Z M 49.905 3.873 C 44.537 3.873 39.323 4.771 34.428 6.541 C 23.582 10.157 14.262 18.526 8.825 29.514 C 3.397 40.468 2.384 52.916 6.036 63.664 C 11.49 82.206 30.263 96.132 49.727 96.132 C 51.833 96.132 53.937 95.967 55.998 95.648 C 74.282 93.5 90.115 79.534 94.581 61.676 C 99.124 45.116 93.455 26.52 80.493 15.356 C 72.453 8.045 61.323 3.873 49.905 3.873 Z"></path>
+                                <path fill="#fff" stroke="#fff" d="M 24.78 54.784 C 24.78 51.559 24.78 48.326 24.78 45.068 C 35.779 45.082 46.767 45.082 57.777 45.082 C 52.942 40.465 48.02 35.918 43.251 31.237 C 47.393 31.378 51.603 30.906 55.708 31.616 C 62.487 37.429 68.811 43.776 75.271 49.94 C 68.589 56.208 62.006 62.6 55.235 68.775 C 51.185 68.774 47.135 68.775 43.082 68.775 C 47.827 63.946 52.828 59.369 57.778 54.731 C 46.768 54.802 35.779 54.73 24.78 54.784 Z"></path>
+                            </svg>
+                            职业介绍
                         </div>
                     </a>
                 </div>
@@ -104,6 +116,21 @@
 
                         </div>
                     </div>
+                    <div class="pictureItemWarper" id="pictureItemWarper13">
+                        <div id="pictureItem13" class="pictureItem">
+
+                        </div>
+                    </div>
+                    <div class="pictureItemWarper" id="pictureItemWarper14">
+                        <div id="pictureItem14" class="pictureItem">
+
+                        </div>
+                    </div>
+                    <div class="pictureItemWarper" id="pictureItemWarper15">
+                        <div id="pictureItem15" class="pictureItem">
+
+                        </div>
+                    </div>
                 </div>
                 <div>
 
@@ -125,116 +152,7 @@
         </div>
     </div>
 
-    <div class="AppendInfoBox">
-        <ul>
-            <li>
-                &copy;2014
-            </li>
-            <li class="append-list-item">
-                Authors
-                <div class="append-pop-box authorTooltip">
-                    <div>
-                        <span class="tooltip-title">Authors</span>
-                        <p>策划：王圣元</p>
-                        <p>数据：乔波、吴璇、王圣元</p>
-                        <p>网页代码：乔波</p>
-                        <p>外观设计：乔波、吴璇、王圣元</p>
-                        <p>赞助、特别鸣谢：李伯轩</p>
-                    </div>
-                </div>
-            </li>
-            <li class="append-list-item">
-                Terms of Service
-                <div class="append-pop-box tosTooltip">
-                    <div>
-                        <span class="tooltip-title">Terms of Service</span>
-                        <p>
-                            &nbsp;&nbsp;&nbsp;&nbsp;首先，感谢您选择本项服务及参与本次活动为保证服务的正常提供及活动的正常进行，请您认真阅读并遵守相关条款。本条款适用于本服务的使用者（以下
-                            简称“用户”）与本服务的提供者（以下简称“总部”）之间的各项事务。
-                        </p>
-                        <p>一、用户权益与义务</p>
-                        <p>&nbsp;&nbsp;1.  用户权益</p>
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;1） 使用权</p>
-                        <p>
-                            &nbsp;&nbsp;&nbsp;&nbsp;使用权系通过本次活动平台（包括网站、QQ群，下同）获取所提供的信息，以
-                            及对信息的下载、转发或用于商业目的的权益。其中信息包括在本次活动平台上提
-                            供的所有图片、文字、数据等。
-                        </p>
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;2）知情权</p>
-                        <p>
-                            &nbsp;&nbsp;&nbsp;&nbsp;知情权系通过本次活动平台获取关于服务状况、服务信息等信息的权益。
-                        </p>
-                        <p>&nbsp;&nbsp;2.权益保障</p>
-                        <p>
-                            &nbsp;&nbsp;&nbsp;&nbsp;总部郑重承诺：即使因不可抗拒因素导致本活动无法正常进行，总部保证
-                            仍有能力为每名用户提供对所购账号不低于2h的全权使用时间，并提供账户使用咨
-                            询、账户使用代理等多项服务，以保障用户在有限时间内获取所有可用信息（指由原
-                            账户可获取的所有可用信息）的权益。
-                        </p>
-                        <p>&nbsp;&nbsp;3.用户义务</p>
-                        <p>
-                            &nbsp;&nbsp;&nbsp;&nbsp;用户在享用本服务时，需履行保密信息的义务。由于活动性质的特殊性，
-                            活动信息仅限于用户与用户、用户与总部之间交流。用户不得向除其他用户、总部
-                            之外的任何第三方提供活动信息，更不得向第三方恶意诋毁或举报本次活动及本项服
-                            务。其中本次活动信息包括但不限于活动详细内容、其他用户及组织者的相关资料。
-                        </p>
-                        <p>二、活动声明</p>
-                        <p>&nbsp;&nbsp;1.本项活动系公益性活动，总部对于本次活动的组织及服务持非盈利态度。</p>
-                        <p>&nbsp;&nbsp;2.本活动均为用户自愿参与，用户享有在需要时退出本项活动的权利。</p>
-                        <p>
-                            &nbsp;&nbsp;3.本活动所需缴纳的费用由总部依实际经费需要确定，用户须在总部规定的期限
-                            内缴纳相关费用。对于退出本次活动的用户，可以依情况返回不超过该用户原缴纳费
-                            用的50%的费用。
-                        </p>
-                        <p>三、法律声明</p>
-                        <p>
-                            &nbsp;&nbsp;1.本次活动所提供的服务，仅供学习交流使用。用户下载（浏览）信息（包括
-                            但不限于本次活动平台上的所有图片、文字、数据）后、务必于24小时内删除（并清
-                            除浏览器缓存及历史纪录），否则由此产生的一切后果由用户承担。
-                        </p>
-                        <p>
-                            &nbsp;&nbsp;2.本次活动所提供服务的信息、版权归原账户提供公司所有。该公司保留对该
-                            公司提供信息的所有权利。
-                        </p>
-                        <p>
-                            &nbsp;&nbsp;3.本次活动因性质的特殊性，用户务必严格履行保密的义务（详见“一、3.用
-                            户义务”部分）如因用户保密不当而致使本次活动受影响或被迫终止，以及使用户及其
-                            他用户因此无法获得所有权益，用户需承担相关责任。
-                        </p>
-                        <p>
-                            &nbsp;&nbsp;4.用户一旦使用本次服务即代表用户已认真阅读并完全理解并接受本服务条款
-                            所涉及的全部权利及义务。本条款自用户使用本服务起在用户与总部之间生效。
-                        </p>
-                        <p>&nbsp;&nbsp;5.本次活动及本服务条款的最终解释权归总部所有。</p>
-                    </div>
-                </div>
-            </li>
-            <li class="append-list-item">
-                Broswer Requirement
-                <div class="append-pop-box broswerTooltip">
-                    <span class="tooltip-title">Broswer Requirement</span>
-                    <p>
-                        To have the best experience of this site ,we do recommend
-                        you to use one of the following broswers:
-                    </p>
-                    <ul>
-                        <li>
-                            Internet Explorer 10 or higher version
-                        </li>
-                        <li>
-                            Chrome 9.0 or higher version
-                        </li>
-                        <li>
-                            Firefox 4.0 or higher version
-                        </li>
-                        <li>
-                            Opera 11.5 or higher version
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
+    <?php include('footer.php')?>
 
     <script>
         ( function () {
@@ -1445,6 +1363,18 @@
                 {
                     name: "北京大学",
                     node: $( 'div#pictureItemWarper12' )
+                },
+                {
+                    name: "同济大学",
+                    node: $( 'div#pictureItemWarper13' )
+                },
+                {
+                    name: "中国科学技术大学",
+                    node: $( 'div#pictureItemWarper14' )
+                },
+                {
+                    name: "山东大学",
+                    node: $( 'div#pictureItemWarper15' )
                 },
             ];
             var current = 0;

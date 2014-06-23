@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>职业介绍</title>
     <link href="css/careerInformation.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
 </head>
 <body>
     <div class="mainContainer">
@@ -152,7 +153,10 @@
                 </div>
             </div>
         </div>
-    </div><script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.1.min.js"></script>
+    </div>
+    
+    <?php include('footer.php')?>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.1.min.js"></script>
     <script>
         // Fallback to loading jQuery from a local path if the CDN is unavailable
         ( window.jQuery || document.write( '<script src="script/jquery-2.1.1.min.js"><\/script>' ) );

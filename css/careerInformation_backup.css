@@ -372,23 +372,23 @@ span.lv1-width1, span.lv1-width2, span.lv1-width3, span.lv1-width4 {
 
 span.lv1-width1 {
     width: 40px;
-    background-color: #7cf;
+    background-color: #9898ff;
     text-align: center;
 }
 
 span.lv1-width2 {
     width: 60px;
-    background-color: #7cf;
+    background-color: #47cf74;
 }
 
 span.lv1-width3 {
     width: 90px;
-    background-color: #7cf;
+    background-color: #ff6f6f;
 }
 
 span.lv1-width4 {
     width: 120px;
-    background-color: #7cf;
+    background-color: #58b1fc;
 }
 
 /*LEVEL TWO MODE*/

@@ -45,7 +45,7 @@ window.addEventListener( "load", function () {
     function fillLv2() {
         lv2Box = $( 'div#lv2-fullview-content-box' );
         lv2Box.empty();
-        var colors = ['#af9'];
+        var colors = ['#fae', '#acf', '#af9', '#fea', '#4ef', '#cf5'];
         for ( var i = 0; i < careerClass[status.lv1id].content.length; i++ ) {
             var node = '<div id="lv2-selector-' + i + '" class="lv2-selector';
             node += '">' + careerClass[status.lv1id].content[i].name;
@@ -80,7 +80,7 @@ window.addEventListener( "load", function () {
     function fillLv3() {
         lv3Box = $( 'div#lv3-fullview-content-box' );
         lv3Box.empty();
-        var colors = ['#fbe'];
+        var colors = ['#fae', '#acf', '#af9', '#fea', '#4ef', '#cf5'];
         for ( var i = 0; i < careerClass[status.lv1id].content[status.lv2id].content.length; i++ ) {
             var node = '<div id="lv3-selector-' + i + '" class="lv3-selector';
             node += '">' + careerClass[status.lv1id].content[status.lv2id].content[i].name;

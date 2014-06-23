@@ -1,6 +1,7 @@
-﻿/// <reference path="../careerInformation.html" />
-/// <reference path="careerDetial.js" />
-/// <reference path="jquery-2.1.1.js" />
+﻿/// <reference path="jquery-2.1.1.js" />
+/// <reference path="majorDetial.js" />
+/// <reference path="../majorInformation.html" />
+
 
 window.addEventListener( "load", function () {
 
@@ -26,7 +27,7 @@ window.addEventListener( "load", function () {
         $( 'div#lv1-box' ).removeClass( 'lv1-box-close' ).addClass( 'lv1-box-open' );
     }
     function fillminiLv1() {
-        $( 'div#lv1-miniview-name' ).text( careerClass[status.lv1id].name );
+        $( 'div#lv1-miniview-name' ).text( majorClass[status.lv1id].name );
     }
     function closeLv1() {
         status.lv1 = false;
@@ -45,10 +46,10 @@ window.addEventListener( "load", function () {
     function fillLv2() {
         lv2Box = $( 'div#lv2-fullview-content-box' );
         lv2Box.empty();
-        var colors = ['#af9'];
-        for ( var i = 0; i < careerClass[status.lv1id].content.length; i++ ) {
+        var colors = ['#fae', '#acf', '#af9', '#fea', '#4ef', '#cf5'];
+        for ( var i = 0; i < majorClass[status.lv1id].content.length; i++ ) {
             var node = '<div id="lv2-selector-' + i + '" class="lv2-selector';
-            node += '">' + careerClass[status.lv1id].content[i].name;
+            node += '">' + majorClass[status.lv1id].content[i].name;
             node += '<\/div>'
             lv2Box.append( node );
             var color = colors[Math.ceil( Math.random() * ( colors.length - 1 ) )];
@@ -63,7 +64,7 @@ window.addEventListener( "load", function () {
         }
     }
     function fillminiLv2() {
-        $( 'div#lv2-miniview-name' ).text( careerClass[status.lv1id].content[status.lv2id].name );
+        $( 'div#lv2-miniview-name' ).text( majorClass[status.lv1id].content[status.lv2id].name );
     }
     function closeLv2() {
         status.lv2 = false;
@@ -80,10 +81,10 @@ window.addEventListener( "load", function () {
     function fillLv3() {
         lv3Box = $( 'div#lv3-fullview-content-box' );
         lv3Box.empty();
-        var colors = ['#fbe'];
-        for ( var i = 0; i < careerClass[status.lv1id].content[status.lv2id].content.length; i++ ) {
+        var colors = ['#fae', '#acf', '#af9', '#fea', '#4ef', '#cf5'];
+        for ( var i = 0; i < majorClass[status.lv1id].content[status.lv2id].content.length; i++ ) {
             var node = '<div id="lv3-selector-' + i + '" class="lv3-selector';
-            node += '">' + careerClass[status.lv1id].content[status.lv2id].content[i].name;
+            node += '">' + majorClass[status.lv1id].content[status.lv2id].content[i].name;
             node += '<\/div>'
             lv3Box.append( node );
             var color = colors[Math.ceil( Math.random() * ( colors.length - 1 ) )];
@@ -99,7 +100,7 @@ window.addEventListener( "load", function () {
         lv3Box.append( '<div class="lv3-clear"><\/div>' );
     }
     function fillminiLv3() {
-        $( 'div#lv3-miniview-name' ).text( careerClass[status.lv1id].content[status.lv2id].content[status.lv3id].name );
+        $( 'div#lv3-miniview-name' ).text( majorClass[status.lv1id].content[status.lv2id].content[status.lv3id].name );
     }
     function closeLv3() {
         status.lv3 = false;
@@ -110,7 +111,7 @@ window.addEventListener( "load", function () {
 
     }
     function fillDetial() {
-        $( 'div#detial-title' ).text( careerClass[status.lv1id].content[status.lv2id].content[status.lv3id].name );
+        $( 'div#detial-title' ).text( majorClass[status.lv1id].content[status.lv2id].content[status.lv3id].name );
         var ajax = new XMLHttpRequest();
         ajax.onreadystatechange = function () {
             if ( ajax.readyState == 4 && ajax.status == 200 ) {
@@ -121,7 +122,7 @@ window.addEventListener( "load", function () {
                 }
             }
         }
-        ajax.open( 'get', 'careerAjax.php?id=' + careerClass[status.lv1id].content[status.lv2id].content[status.lv3id].id, true );
+        ajax.open( 'get', 'majorAjax.php?id=' + majorClass[status.lv1id].content[status.lv2id].content[status.lv3id].id, true );
         ajax.send();
 
     }
@@ -140,18 +141,18 @@ window.addEventListener( "load", function () {
         }, {
             len: 0, jq: $( 'div#lv1-row4' )
         }, ];
-        for ( var i = 0; i < careerClass.length; i++ ) {
+        for ( var i = 0; i < majorClass.length; i++ ) {
             var minRow = 0;
             for ( var j = 1; j < lv1Menu.length; j++ ) {
                 if ( lv1Menu[j].len < lv1Menu[minRow].len ) {
                     minRow = j;
                 }
             }
-            var node = '<span id="lv1-selector-' + i + '" class="lv1-width' + careerClass[i].width;
-            node += '">' + careerClass[i].name;
+            var node = '<span id="lv1-selector-' + i + '" class="lv1-width' + majorClass[i].width;
+            node += '">' + majorClass[i].name;
             node += '<\/span>'
             lv1Menu[minRow].jq.append( node );
-            lv1Menu[minRow].len += careerClass[i].width;
+            lv1Menu[minRow].len += majorClass[i].width;
             $( "#lv1-selector-" + i ).click(( function ( i ) {
                 return function () {
                     status.lv1id = i;
