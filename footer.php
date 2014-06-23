@@ -2,7 +2,7 @@
 <div class="AppendInfoBox">
     <ul>
         <li>
-            Version 0.9.9 RC
+            Version 1.0.0
         </li>
         <li>
             &copy;2014 星空之蓝小组
