@@ -1,5 +1,5 @@
 <?php
-define('LOCAL_DEBUG_MODE',TRUE);
+define('LOCAL_DEBUG_MODE',FALSE);
 if(LOCAL_DEBUG_MODE==TRUE){
     define('DATABASE_HOST','localhost');
     define('DATABASE_USER','LocalDBU1jyl');
