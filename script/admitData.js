@@ -164,10 +164,12 @@ window.addEventListener( "load", function () {
         document.getElementById( "scoreType" ),
         document.getElementById( "schoolType" ),
         document.getElementById( "rankType" ),
+        document.getElementById( "preType" ),
     ]
     typeSet[0].addEventListener( "click", function () { changeMode( 0 ); }, false );
     typeSet[1].addEventListener( "click", function () { changeMode( 1 ); }, false );
     typeSet[2].addEventListener( "click", function () { changeMode( 2 ); }, false );
+    typeSet[3].addEventListener( "click", function () { changeMode( 3 ); }, false );
 
 
     function changeMode( btn ) {

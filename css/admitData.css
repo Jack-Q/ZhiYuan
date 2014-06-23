@@ -84,15 +84,23 @@ div.explanationIndicatorBox{
     font-size:18px;
     color:rgb(0, 122, 204);
     background-color:#fff;
-    width:20px;
+    width:50px;
     height:20px;
-    padding:2px;
+    padding:3px;
     border-radius:11px;
     font-weight:500;
-    position:relative;
+    -moz-transition: all ease 400ms;
+    -o-transition: all ease 400ms;
+    -webkit-transition: all ease 400ms;
+    transition: all ease 400ms;
+    overflow:hidden;
 }
 span.explanationIndicator{
-
+    display:inline-block;
+    height:20px;
+    width:50px;
+    font-size:20px;
+    line-height:20px;
 }
 div.explanationTooltip {
     -moz-transition: all ease 400ms;
@@ -103,9 +111,9 @@ div.explanationTooltip {
     width: 150px;
     height: 80px;
     background-color: #eee;
-    bottom: 55px;
+    bottom: 63px;
     opacity: 0;
-    left: -63px;
+    left: 30px;
     border-radius: 10px;
     box-shadow: #aaa 0 0 10px 3px;
     pointer-events: none;
@@ -122,9 +130,10 @@ div.explanationTooltip>p{
     padding:0;
 }
 div.explanationIndicatorBox:hover >div.explanationTooltip{
-    bottom:33px;
+    bottom:43px;
     opacity:1;
 }
+
 
 .formArea {
     float: left;

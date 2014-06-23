@@ -1,6 +1,5 @@
 <?php
-define('LOCAL_DEBUG_MODE',FALSE);
-if(LOCAL_DEBUG_MODE==TRUE){
+if(!(strpos($_SERVER["SERVER_NAME"],'localhost')===FALSE) ){
     define('DATABASE_HOST','localhost');
     define('DATABASE_USER','LocalDBU1jyl');
     define('DATABASE_PASSWORD','[|QGEiO_J$t{');

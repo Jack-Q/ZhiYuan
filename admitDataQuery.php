@@ -1,8 +1,4 @@
-﻿<?php
-
-?>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta http-equiv="Content-Type" content="text/html" />
@@ -36,16 +32,20 @@
                 <div class="selectionOff" id="rankType">
                     按全省排名
                 </div>
+                <div class="selectionOff" id="preType">
+                    提前批次
+                </div>
                 <div class="explanationWarper">
                     <div class="explanationIndicatorBox">
-                        <span class="explanationIndicator" title="说明">?</span>
+                        <span class="explanationIndicator" title="说明">说明</span>
                         <div class="explanationTooltip">
-                            <p>
+                            
+                            <p> 
                                 此处查询的数据为近三年山西省部分考生的录取院校及专业信息。
                             </p>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="formArea">
@@ -173,8 +173,7 @@
                                         </optgroup>
                                     </select>
                                     学校
-                                    <select name="SchoolName" id="schoolSeletion">
-                                    </select>
+                                    <select name="SchoolName" id="schoolSeletion"></select>
                                 </div>
                                 <hr />
                                 <div class="submitArea">
@@ -225,11 +224,42 @@
                             </form>
                         </div>
                     </div>
+                    <div class="formPage" id="scoreForm">
+                        <div class="formPageTitle">
+                            提前批次查询
+                        </div>
+                        <div>
+                            <form id="queryByPre" method="get" action="admitDataResult.php">
+                                <input type="hidden" name="queryType" value="4" />
+                                <br />
+                                <br />
+                                <div class="formSet">
+                                    <span class="label">文理科</span>
+                                    <input type="radio" value="0" name="typeWL" checked="checked" title="理科" />
+                                    <label for="typeWL">理科</label>
+                                    <input type="radio" value="1" name="typeWL" title="文科" />
+                                    <label for="typeWL">文科</label>
+                                </div>
+                                <div class="formSet">
+                                    <span class="label">查询年份</span>
+                                    <select id="queryYear" name="queryYear">
+                                        <option value="2">2013</option>
+                                        <option value="3">2012</option>
+                                        <option value="4">2011</option>
+                                    </select>
+                                </div>
+                                <div class="submitArea">
+                                    <input type="reset" title="清空表单内容" value="清空" />
+                                    <input type="submit" title="提交查询" value="查询" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <?php include('footer.php')?>
 </body>
 </html>

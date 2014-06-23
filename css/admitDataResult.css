@@ -95,7 +95,7 @@ div.mainContainer {
 
 #resultTable {
     width: 95%;
-    margin: 3px auto 3px auto;
+    margin: 15px auto 3px auto;
 }
 
 thead > tr > td {
@@ -141,8 +141,7 @@ tbody > tr:nth-child(2n) > td {
             transition: all ease 500ms;
             opacity: 0;
             pointer-events: none;
-            font-size: 18px;
-            line-height: 18px;
+            line-height: 15px;
             color: #000;
             padding:3px;
             z-index:3;
@@ -168,7 +167,7 @@ tbody > tr:nth-child(2n) > td {
             #resultTable td > a:hover > div {
                 color: #000;
                 opacity: 1;
-                bottom: 25px;
+                bottom: 22px;
             }
 
 div.pageNavBox {

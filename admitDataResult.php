@@ -516,9 +516,9 @@
                                 <td width="30%">学校</td>
                                 <td width="25%">专业</td>
                                 <td width="9%">全省排名</td>
-                                <td width="5%">分数</td>
-                                <td width="3%"><abbr title="本位次录取人数">人数</abbr></td>
-                                <td width="8%">批次</td>
+                                <td width="4.7%">分数</td>
+                                <td width="4.7%"><abbr title="本位次录取人数">人数</abbr></td>
+                                <td width="6.6%">批次</td>
                                 <td width="5%">年份</td>
                             </tr>
                         </thead>
@@ -556,9 +556,9 @@
                                 <td width="30%">学校</td>
                                 <td width="25%">专业</td>
                                 <td width="9%">全省排名</td>
-                                <td width="5%">分数</td>
-                                <td width="3%"><abbr title="本位次录取人数">人数</abbr></td>
-                                <td width="8%">批次</td>
+                                <td width="4.7%">分数</td>
+                                <td width="4.7%"><abbr title="本位次录取人数">人数</abbr></td>
+                                <td width="6.6%">批次</td>
                                 <td width="5%">年份</td>
                             </tr>
                         </thead>
