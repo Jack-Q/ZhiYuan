@@ -296,7 +296,7 @@
     <title>历年高校录取情况查询结果</title>
     <meta charset="utf-8" />
     <link href="css/admitDataResult.css" rel="stylesheet" />
-    <link href="css/common.css" rel="stylesheet" />
+    <?php include('header.php');?>
 </head>
 <body>
     <div class="mainContainer">
@@ -311,7 +311,7 @@
                     </svg>
                 </a>
             </div>
-            <div>历年高校录取情况查询结果<sup style="font-size: 0.4em;color:#4af;word-wrap: break-word;">beta</sup></div>
+            <div>历年高校录取情况查询结果<sup style="font-size: 0.4em; color: #4af; -ms-word-wrap: break-word; word-wrap: break-word;">beta</sup></div>
         </div>
         <div class="queryResult">
             <?php
@@ -319,7 +319,7 @@
             ?>
             <div class="errorResult">
                 <p style="font-size:2.7em;text-indent:1em;margin-bottom:35px;">:(</p>
-                <p> Oops! An error occured while<br /> parsing your query.</p>
+                <p> Sorry！解析您的请求时出错了...</p>
             </div>
             <?php
                 }else{
@@ -334,7 +334,7 @@
                     ?>
                     <div class="resultNotFound">
                         <p style="font-size:2.7em;text-indent:1em;margin-bottom:35px;margin-top:0;">:(</p>
-                        <p> Oops! No results were found.</p>
+                        <p> 没有找到符合要求的结果。</p>
                     </div>
                     <?php        
                         }elseif($dataConut>15){

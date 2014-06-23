@@ -45,6 +45,7 @@ div.mainContainer {
     float: left;
     padding: 15px 0 35px 0;
     height: 400px;
+    position: relative;
 }
 
     .selector > div {
@@ -66,6 +67,65 @@ div.mainContainer {
     background-color: rgb(188, 224, 255);
 }
 
+div.explanationWarper {
+    -ms-transition: all ease 1s;
+    -moz-transition: all ease 1s;
+    -o-transition: all ease 1s;
+    -webkit-transition: all ease 1s;
+    transition: all ease 1s;
+    width:220px;
+    position:absolute;
+    bottom:0;
+    left:0;
+    text-align:center;
+}
+div.explanationIndicatorBox{
+    display:inline-block;
+    font-size:18px;
+    color:rgb(0, 122, 204);
+    background-color:#fff;
+    width:20px;
+    height:20px;
+    padding:2px;
+    border-radius:11px;
+    font-weight:500;
+    position:relative;
+}
+span.explanationIndicator{
+
+}
+div.explanationTooltip {
+    -moz-transition: all ease 400ms;
+    -o-transition: all ease 400ms;
+    -webkit-transition: all ease 400ms;
+    transition: all ease 400ms;
+    position: absolute;
+    width: 150px;
+    height: 80px;
+    background-color: #eee;
+    bottom: 55px;
+    opacity: 0;
+    left: -63px;
+    border-radius: 10px;
+    box-shadow: #aaa 0 0 10px 3px;
+    pointer-events: none;
+    cursor:pointer;
+    padding:10px;
+}
+div.explanationTooltip>p{
+    font-size:18px;
+    line-height:19px;
+    color:#111;
+    text-indent:1em;
+    text-align:left;
+    margin:0;
+    padding:0;
+}
+div.explanationIndicatorBox:hover >div.explanationTooltip{
+    bottom:33px;
+    opacity:1;
+}
+
 .formArea {
     float: left;
     margin: 0;
@@ -73,17 +133,17 @@ div.mainContainer {
     background-color: rgb(188, 224, 255);
     width: 550px;
     height: 400px;
-    overflow:hidden;
+    overflow: hidden;
 }
 
-.formPage{
-
-    height:450px;
-    width:500px;
-    font-size:20px;
+.formPage {
+    height: 450px;
+    width: 500px;
+    font-size: 20px;
 }
+
 .formSet {
-    top:0;
+    top: 0;
     position: relative;
     margin: 0 30px 20px 30px;
     -moz-transition: all ease 500ms;
@@ -91,16 +151,19 @@ div.mainContainer {
     -webkit-transition: all ease 500ms;
     transition: all ease 500ms;
 }
-.label{
-    display:block;
-    border-bottom:rgba(255,255,255,.3) solid 2px;
-    position:relative;
-    left:-25px;
+
+.label {
+    display: block;
+    border-bottom: rgba(255,255,255,.3) solid 2px;
+    position: relative;
+    left: -25px;
 }
-label{
-    width:50px;
-    margin:0 0 0 5px;
+
+label {
+    width: 50px;
+    margin: 0 0 0 5px;
 }
+
 input[type="text"] {
     height: 25px;
     width: 100%;
@@ -159,14 +222,16 @@ select {
     width: 100%;
     font-size: 18px;
 }
-.formPageTitle{
-    font-size:35px;
-    line-height:35px;
-    border-bottom:  rgb(150,150,150) solid 1px;
+
+.formPageTitle {
+    font-size: 35px;
+    line-height: 35px;
+    border-bottom: rgb(150,150,150) solid 1px;
 }
+
 .submitArea {
-    text-align:right;
-    padding:5px 15px 0 0;
+    text-align: right;
+    padding: 5px 15px 0 0;
 }
 
 input, select {

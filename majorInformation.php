@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>专业介绍</title>
     <link href="css/majorInformation.css" rel="stylesheet" />
-    <link href="css/common.css" rel="stylesheet" />
+    <?php include('header.php');?>
 </head>
 <body>
     <div class="mainContainer">

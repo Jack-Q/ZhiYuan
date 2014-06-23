@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <link href="css/admitData.css" rel="stylesheet" />
     <script src="script/admitData.js"></script>
-    <link href="css/common.css" rel="stylesheet" />
+    <?php include('header.php');?>
 </head>
 <body>
     <div class="mainContainer">
@@ -35,6 +35,17 @@
                 </div>
                 <div class="selectionOff" id="rankType">
                     按全省排名
+                </div>
+                <div class="explanationWarper">
+                    <div class="explanationIndicatorBox">
+                        <span class="explanationIndicator" title="说明">?</span>
+                        <div class="explanationTooltip">
+                            <p>
+                                此处查询的数据为近三年山西省部分考生的录取院校及专业信息。
+                            </p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <div class="formArea">
@@ -69,8 +80,8 @@
                                 </div>
                                 <div class="formSet">
                                     <span class="label">录取分数</span>
-                                    下界<input type="number" min="0" max="749" step="1" name="lowerBound" spellcheck="false" placeholder="在此输入查询分数段的最小值" />
                                     上界<input type="number" min="1" max="750" step="1" name="upperBound" spellcheck="false" placeholder="在此输入查询分数段的最大值" />
+                                    下界<input type="number" min="0" max="749" step="1" name="lowerBound" spellcheck="false" placeholder="在此输入查询分数段的最小值" />
                                 </div>
                                 <hr />
                                 <div class="submitArea">
@@ -203,8 +214,8 @@
                                 </div>
                                 <div class="formSet">
                                     <span class="label">全省排名</span>
-                                    下界<input type="number" min="1" max="50000" step="1" name="lowerBound" spellcheck="false" placeholder="在此输入查询全省排名范围的最小值" />
                                     上界<input type="number" min="1" max="50000" step="1" name="upperBound" spellcheck="false" placeholder="在此输入查询全省排名范围的最大值" />
+                                    下界<input type="number" min="1" max="50000" step="1" name="lowerBound" spellcheck="false" placeholder="在此输入查询全省排名范围的最小值" />
                                 </div>
                                 <hr />
                                 <div class="submitArea">
