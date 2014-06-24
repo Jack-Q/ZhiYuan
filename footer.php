@@ -139,7 +139,7 @@
                     "sqq", "qq",
                     "mail", "xg"
                 ],
-                "bdPic": "img/blueSky_AD1.png",
+                "bdPic": "http://zhiyuan.jd-app.com/img/blueSky_AD1.png",
                 "bdStyle": "1",
                 "bdSize": "16",
                 "bdSign": "normal",
