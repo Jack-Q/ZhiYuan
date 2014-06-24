@@ -74,6 +74,7 @@
         }
     }
     function year2yearType($yearStr){
+	
         switch ($yearStr) {
             case '2013' : return 2;
             case '2012' : return 3;
@@ -81,6 +82,52 @@
             default : return 0;
         }
     }
+	function getAdmissionLine($year,$pc){
+        global $wenliType;
+		if($wenliType){
+			switch($year){
+				case '2' : //2013
+					return $pc=='1'?493:440;
+					break;
+				case '3' : //2012
+					return $pc=='1'?530:476;
+					break;
+				case '4' : //2011
+					return $pc=='1'?570:520;
+					break;
+				default:
+					return 0;
+			}
+		}else{
+			switch($year){
+				case '2' : //2013
+					return $pc=='1'?507:459;
+					break;
+				case '3' : //2012
+					return $pc=='1'?539:492;
+					break;
+				case '4' : //2011
+					return $pc=='1'?543:496;
+					break;
+				default:
+					return 0;
+			}
+		}
+	}
+	function calcDelta($score ,$year){
+		$year=year2yearType($year);
+		$score = intval($score);
+		if($score>=getAdmissionLine($year,'1')){
+			return 1000+($score-getAdmissionLine($year,'1'));
+		}elseif($score>=getAdmissionLine($year,'2')){
+			return 2000+($score-getAdmissionLine($year,'2'));
+		}else{
+			return -1;
+		}
+	}
+	function calcScoreByDelta($delta ,$PC,$year){
+		return getAdmissionLine($year,$PC)+$delta;
+	}
     function fillHTMLRow($RowLine,$line){
         global $wenliType;
         echo '<tr><td>'.($line+1).'</td>'; 
@@ -102,7 +149,28 @@
         }else{
             echo '<td>'.typePC2wordPC($RowLine[7]).'</td>';
         }
-        echo '<td>'.$RowLine[8].'</td></tr>';
+        echo '<td>'.$RowLine[8].'</td><td>';
+		$delta=calcDelta($RowLine[3],$RowLine[8]);
+		if($delta==-1){
+			echo '---';
+		}elseif($delta<2000){
+			
+			echo '<a href="admitDataResult.php?queryType=5&typeWL='
+				.($wenliType?1:0).'&queryYear='.year2yearType($RowLine[8]).'&typePC=1&delta='
+				.($delta-1000).'">'
+				.($delta-1000).'<div class="resultTooltip4">查看'
+				.$RowLine[8].'年与一本线差距'
+				.($delta-1000).'的考生录取情况</div></a>';
+		}else{
+			
+			echo '<a href="admitDataResult.php?queryType=5&typeWL='
+				.($wenliType?1:0).'&queryYear='.year2yearType($RowLine[8]).'&typePC=2&delta='
+				.($delta-2000).'">'
+				.($delta-2000).'<div class="resultTooltip4">查看'
+				.$RowLine[8].'年与二本线差距'
+				.($delta-2000).'的考生录取情况</div></a>';
+		}
+		echo '</td></tr>';
     }
     function fetchDataByScore($lowerBnd,$upperBnd,$yearInd){
         global $databaseConnection;
@@ -255,7 +323,7 @@
         $dataConut=mysql_num_rows($result);
         $dataRows=$result;
         $briefDescription='检索'.$YEAR_STR.'年全省排名在'.$lowerBnd.'到'
-            .$upperBnd.'的考生('.wenli2String().'科)录取考生录取信息,';
+            .$upperBnd.'的考生('.wenli2String().'科)录取信息,';
         if($dataConut==0){
             $briefDescription.='未检索到结果。';
         }else{
@@ -366,6 +434,58 @@
             $briefDescription.='检索到'.$dataConut.'个结果。';
         }
     }
+	function fetchDataByDelta($deltaValue,$typePC,$yearInd){
+        global $databaseConnection;
+        global $errorOccurance;
+        global $dataConut;
+        global $dataRows;
+        global $briefDescription;
+        global $wenliType;
+		$queryScore=calcScoreByDelta($deltaValue,$typePC,$yearInd);
+        $YEAR_STR;
+        $queryStr='SELECT * FROM AdmitInfo WHERE ( Score = ';
+        $queryStr.=$queryScore.' ) ';
+        switch($yearInd){
+            //case '0':
+            //    $YEAR_STR='近三';
+            //   $queryStr.='( Year BETWEEN 2011 AND 2013 )';
+            //    break;
+            //case '1':
+            //    $YEAR_STR='近两';
+            //    $queryStr.='( Year BETWEEN 2012 AND 2013 )';
+            //   break;
+            case '2':
+                $YEAR_STR='2013';
+                $queryStr.=' AND ( Year = 2013 )';
+                break;
+            case '3':
+                $YEAR_STR='2012';
+                $queryStr.=' AND ( Year = 2012 )';
+                break;
+            case '4':
+                $YEAR_STR='2011';
+                $queryStr.=' AND ( Year = 2011 )';
+                break;
+            default:
+                $YEAR_STR='';
+                $errorOccurance=TRUE;
+        }
+        $queryStr.=$wenliType?' AND ( TypeWL = "W") ':' AND ( TypeWL = "L") ';
+        //$queryStr.=' ORDER BY Rank , Year DESC';
+        $result=mysql_query($queryStr,$databaseConnection);
+        if(!$result){
+            $errorOccurance=TRUE;
+            return;
+        }
+        $dataConut=mysql_num_rows($result);
+        $dataRows=$result;
+        $briefDescription='检索'.$YEAR_STR.'年与第'.($typePC=='1'?'一':'二').'批次录取线差距为'.$deltaValue.'的考生('.wenli2String().'科)录取信息,';
+        if($dataConut==0){
+            $briefDescription.='未检索到结果。';
+        }else{
+            $briefDescription.='检索到'.$dataConut.'个结果。';
+        }
+    }
     if(isset($_GET['queryType'])){
         $selectType=$_GET['queryType'];
         switch ($selectType){
@@ -449,7 +569,25 @@
                     $errorOccurance=TRUE;
                 }
                 break;
-
+			case '5':
+			     //By Delta
+                if(isset($_GET['queryYear'],$_GET['typePC'],$_GET['delta'])
+                    &&!empty($_GET['typePC'])
+                    &&!empty($_GET['delta'])){
+                    $typePC=trim($_GET['typePC']);
+                    $delta=trim($_GET['delta']);
+                    $yearType=$_GET['queryYear'];
+                    if($delta&&$typePC){
+                        connectDatabase();
+                        fetchDataByDelta($delta,$typePC,$yearType);
+                        closeDataBase();
+                    }else{
+                        $errorOccurance=TRUE;
+                    }                    
+                }else{
+                    $errorOccurance=TRUE;
+                }
+                break;
             default:
             $errorOccurance=TRUE;
         }
@@ -514,13 +652,14 @@
                         <thead>
                             <tr>
                                 <td width="5%">序号</td>
-                                <td width="30%">学校</td>
-                                <td width="25%">专业</td>
-                                <td width="9%">全省排名</td>
+                                <td width="28%">学校</td>
+                                <td width="23%">专业</td>
+                                <td width="8.5%">全省排名</td>
                                 <td width="4.7%">分数</td>
                                 <td width="4.7%"><abbr title="本位次录取人数">人数</abbr></td>
                                 <td width="6.6%">批次</td>
                                 <td width="5%">年份</td>
+								<td width="4.5%">线差</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -630,6 +769,18 @@
                                     echo '<span title="下一页"><a href="'.$newURLBase.($pageOffset+1).'">&gt;</a></span>';
                                 }
                             }else{
+                                //Display Jump Box
+                                echo("");?>
+                                <div class="pageJunp">
+                                    <span>转至第</span>
+                                    <input type="number" min="1" max="<?php echo $pagesCount ?>" id="pageNumber"
+                                            value="<?php echo $pageOffset ?>" required="required" />
+                                    <span>页</span>
+                                    <span id="pageJump" 
+                                          onclick="( function () {var val = document.getElementById( 'pageNumber' ).value;if ( val&&val>=1&&val<=<?php 
+										  echo $pagesCount ?> ) { window.location = '<?php echo $newURLBase ?>' + val;} else {alert('输入页码有误。');}} )()">
+                                    查询</span>
+                                </div><?php
                                 if($pageOffset==1){
                                     echo '<span class="pageNavNums-on">1</span>';
                                     echo '<span><a href="'.$newURLBase.'2">2</a></span>';

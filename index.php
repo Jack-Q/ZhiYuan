@@ -1402,7 +1402,7 @@
             for ( var i = 0; i < pics.length; i++ ) {
                 if ( i === current ) {
                     pics[i].node.css( {
-                        'z-index': '0',
+                        'z-index': '0'
                     } );
                 } else if ( prevVal( i ) === current ) {
                     pics[i].node.css( {
@@ -1418,7 +1418,7 @@
 
                 } else {
                     pics[i].node.css( {
-                        'z-index': '-1',
+                        'z-index': '-1'
                     } );
 
                 }

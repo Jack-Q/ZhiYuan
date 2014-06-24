@@ -94,7 +94,7 @@ div.mainContainer {
 }
 
 #resultTable {
-    width: 95%;
+    width: 99%;
     margin: 15px auto 3px auto;
 }
 
@@ -116,12 +116,13 @@ tbody > tr:nth-child(2n) > td {
     margin: 0;
     padding: 0;
     text-align: center;
-        position: relative;
+    position: relative;
 }
 
     #resultTable td > a {
-        text-decoration: none;
+        text-decoration: underline;
         color: #333;
+        text-shadow:#eee,0,0,2px ,1px;
         cursor: pointer;
         -moz-transition: all ease 500ms;
         -o-transition: all ease 500ms;
@@ -143,32 +144,39 @@ tbody > tr:nth-child(2n) > td {
             pointer-events: none;
             line-height: 15px;
             color: #000;
-            padding:3px;
-            z-index:3;
-        }
-        div.resultTooltip1{
-            width: 350px;
-            left: -20px;
-        }
-        div.resultTooltip2{
-            width: 350px;
-            left: -100px;
-        }
-        div.resultTooltip3{
-            width: 150px;
-            left: -50px;
+            padding: 3px;
+            z-index: 3;
         }
 
-        #resultTable td > a:hover {
-            text-decoration: none;
-            color: #91c;
-        }
+div.resultTooltip1 {
+    width: 350px;
+    left: -20px;
+}
 
-            #resultTable td > a:hover > div {
-                color: #000;
-                opacity: 1;
-                bottom: 22px;
-            }
+div.resultTooltip2 {
+    width: 350px;
+    left: -100px;
+}
+
+div.resultTooltip3 {
+    width: 150px;
+    left: -50px;
+}
+div.resultTooltip4 {
+    width: 180px;
+    left: -140px;
+}
+
+#resultTable td > a:hover {
+    text-decoration: none;
+    color: #91c;
+}
+
+    #resultTable td > a:hover > div {
+        color: #000;
+        opacity: 1;
+        bottom: 22px;
+    }
 
 div.pageNavBox {
     color: white;
@@ -176,7 +184,7 @@ div.pageNavBox {
     height: 30px;
     width: 770px;
     padding: 0 15px 0 15px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     overflow: hidden;
     line-height: 30px;
@@ -222,5 +230,39 @@ div.pageNavNums > span:hover {
 
     div.pageNavNums > span:hover > a {
         text-decoration: none;
-        color: #119cdd;
+        color:#119cdd ;
     }
+
+div.pageJunp {
+    width: 175px;
+    float: left;
+    height: 20px;
+    margin: 3px 30px 3px 3px;
+    padding: 2px;
+    line-height: 20px;
+    background-color: rgba(255,255,255,.2);
+}
+
+    div.pageJunp > input {
+        text-align:center;
+        color:#119cdd;
+        width: 40px;
+        height: 20px;
+        margin-bottom: 0;
+        padding: 0;
+        border: none;
+        background-color: rgba(255,255,255,.6);
+    }
+
+div.pageJump {
+    display: inline-block;
+}
+
+span#pageJump {
+    background-color: #06c;
+    font-size: 15px;
+    line-height: 15px;
+    padding: 2px;
+    border-radius: 3px;
+    cursor: pointer;
+}
