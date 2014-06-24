@@ -84,7 +84,7 @@
     }
 	function getAdmissionLine($year,$pc){
         global $wenliType;
-		if($wenliType){
+		if(!$wenliType){
 			switch($year){
 				case '2' : //2013
 					return $pc=='1'?493:440;
