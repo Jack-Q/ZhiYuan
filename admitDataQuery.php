@@ -87,6 +87,7 @@
                                 </div>
                                 <div class="formSet">
                                     <span class="label">录取分数</span>
+                                    上界<input type="number" min="0" max="749" step="1" name="upperBound" spellcheck="false" placeholder="在此输入查询分数段的最大值" />
                                     下界<input type="number" min="0" max="749" step="1" name="lowerBound" spellcheck="false" placeholder="在此输入查询分数段的最小值" />
                                 </div>
                                 <hr />
