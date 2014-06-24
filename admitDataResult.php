@@ -82,6 +82,7 @@
         }
     }
     function fillHTMLRow($RowLine,$line){
+        global $wenliType;
         echo '<tr><td>'.($line+1).'</td>'; 
         echo '<td><a href="admitDataResult.php?queryType=1&typeWL='.($wenliType?1:0).'&queryYear=0&SchoolName='
             .urlencode($RowLine[0]).'">'.$RowLine[0].'<div class="resultTooltip1">查看近三年'
@@ -481,7 +482,7 @@
                     </svg>
                 </a>
             </div>
-            <div>历年高校录取情况查询结果<sup style="font-size: 0.4em; color: #4af; -ms-word-wrap: break-word; word-wrap: break-word;">beta</sup></div>
+            <div>历年高校录取情况查询结果</div>
         </div>
         <div class="queryResult">
             <?php

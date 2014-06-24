@@ -1,8 +1,17 @@
 
 <div class="AppendInfoBox">
+
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a>
+        <a href="#" class="bds_more" data-cmd="more"></a>
+    </div>
     <ul>
         <li>
-            Version 1.0.0
+            Version 1.0.1
         </li>
         <li>
             &copy;2014 星空之蓝小组
@@ -63,7 +72,7 @@
                     <p>二、活动声明</p>
                     <p>&nbsp;&nbsp;1.本项活动系公益性活动，总部对于本次活动的组织及服务持非盈利态度。</p>
                     <p>&nbsp;&nbsp;2.本活动均为用户自愿参与，用户享有在需要时退出本项活动的权利。</p>
-                    
+
                     <p>三、法律声明</p>
                     <p>
                         &nbsp;&nbsp;1.本次活动所提供的服务，仅供学习交流使用。用户下载（浏览）信息（包括
@@ -110,7 +119,41 @@
                 </ul>
             </div>
         </li>
+
     </ul>
+    <script>
+        //Baidu Share Part
+        window._bd_share_config = {
+            "common": {
+                "bdSnsKey": {},
+                "bdText": "星空之蓝志愿填报辅助系统正式发布了！",
+                "bdDesc": "星空之蓝志愿填报辅助系统正式发布了！汇集近三年山西考生报考院校及专业信息，同时还有对本科院校专业的介绍，以及与今后就业相关的职业信息介绍。欢迎大家访问体验。http://zhiyuan.jd-app.com",
+                "bdMini": "2",
+                "bdMiniList": [
+                    "mshare", "qzone",
+                    "tsina", "bdysc",
+                    "weixin", "renren",
+                    "tqq", "kaixin001",
+                    "tqf", "tieba",
+                    "douban", "bdhome",
+                    "sqq", "qq",
+                    "mail", "xg"
+                ],
+                "bdPic": "img/blueSky_AD1.png",
+                "bdStyle": "1",
+                "bdSize": "16",
+                "bdSign": "normal",
+                "bdPopupOffsetLeft":"-200"
+            },
+            "share": {}
+        };
+        with ( document ) 0[
+            ( getElementsByTagName( 'head' )[0] || body ).appendChild(
+                createElement( 'script' ) )
+            .src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='
+            + ~( -new Date() / 36e5 )];
+    </script>
+
 </div>
 
 <?php

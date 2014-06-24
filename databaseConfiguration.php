@@ -1,5 +1,6 @@
 <?php
-if(!(strpos($_SERVER["SERVER_NAME"],'localhost')===FALSE) ){
+if(!(strpos($_SERVER["SERVER_NAME"],'localhost')===FALSE) 
+    || !(strpos($_SERVER["SERVER_NAME"],'169.254.80.80')===FALSE) ){
     define('DATABASE_HOST','localhost');
     define('DATABASE_USER','LocalDBU1jyl');
     define('DATABASE_PASSWORD','[|QGEiO_J$t{');

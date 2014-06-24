@@ -15,7 +15,7 @@
                     <div id="logo"></div>
                 </a>
             </div>
-            <div>星空之蓝志愿填报辅助系统<sup style="font-size: 0.4em; color: #4af; -ms-word-wrap: break-word; word-wrap: break-word;">beta</sup></div>
+            <div>星空之蓝志愿填报辅助系统</div>
         </div>
         <div class="indexContent">
             <div class="linkBoxWarper">

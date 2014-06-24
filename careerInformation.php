@@ -17,7 +17,7 @@
                     </svg>
                 </a>
             </div>
-            <div>职业介绍<sup style="font-size: 0.4em; color: #4af; -ms-word-wrap: break-word; word-wrap: break-word;">beta</sup></div>
+            <div>职业介绍</div>
         </div>
         <div class="majorBox">
             <div id="lv1-box" class="lv1-box-open">
