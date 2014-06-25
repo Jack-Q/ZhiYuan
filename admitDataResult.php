@@ -635,9 +635,65 @@
             ?>
             <div class="successResult">
                 <div class="briefDescription">
+				
                     <?php echo $briefDescription; ?>
                 </div>
+				<div class="toolbarBox">
+					<div class="orderSetBox">
+						<div class="toolbar-icon">
+                            <img src="img/icon_rank.png" />
+						</div>
+						<div class="toobar-label">排序</div>
+                        <div class="orderSetContent">
+                            <span>以</span>
+                            <select>
+                                <option>排名</option>
+                                <option>分数</option>
+                                <option>年份</option>
+                                <option>线差</option>
+                            </select>
+                            <span>为关键字按</span>
+                            <select>
+                                <option>递增</option>
+                                <option>递减</option>
+                            </select>
+                            <span>的顺序</span>
+                            <span class="orderJump" >
+                                排序
+                            </span>
+                        </div>
+					</div>
+                    <script>
+                        function helpToggle(){
+                            var helpBox=document.getElementById('helpBox');
+                            if(helpBox.className=='helpBox-on'){
+                                helpBox.className='helpBox-off';
+                            }else{
+                                helpBox.className='helpBox-on';
+                            }
+                        }
+                    </script>
+                    <div class="helpShowBox" onclick="helpToggle()">
+                        <div class="toolbar-icon">
+                            <img src="img/icon_help.png" />
+                        </div>
+                        <div class="toobar-label">帮助</div>
+                    </div>
+				</div>
+                <div id="helpBox" class="helpBox-off">
+                    <div class="helpBox-titleLine">
+                        
+                        <span class="helpBox-closeButton" title="关闭帮助" onclick="helpToggle()">
+                            ×
+                        </span>
+                        <span>帮助</span>
+                    </div>
+                    <div class="helpBox-content">
+
+                    </div>
+                </div>
                 <div id="detialResult">
+				
                     <?php
                         if(!$dataConut>0){
                     ?>
