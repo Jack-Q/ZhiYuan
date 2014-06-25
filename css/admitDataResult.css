@@ -122,7 +122,7 @@ tbody > tr:nth-child(2n) > td {
     #resultTable td > a {
         text-decoration: underline;
         color: #333;
-        text-shadow:#eee,0,0,2px ,1px;
+        text-shadow: #eee,0,0,2px,1px;
         cursor: pointer;
         -moz-transition: all ease 500ms;
         -o-transition: all ease 500ms;
@@ -162,6 +162,7 @@ div.resultTooltip3 {
     width: 150px;
     left: -50px;
 }
+
 div.resultTooltip4 {
     width: 180px;
     left: -140px;
@@ -197,10 +198,10 @@ div.pageNavNums {
 }
 
     div.pageNavNums > span {
+        min-width: 30px;
         height: 25px;
         margin: 0 3px 5px 3px;
         display: inline-block;
-        min-width: 30px;
         text-align: center;
         border-radius: 0 0 3px 3px;
         cursor: pointer;
@@ -214,6 +215,9 @@ div.pageNavNums {
             position: relative;
             text-decoration: none;
             color: #fff;
+            display: inline-block;
+            height: 25px;
+            min-width: 30px;
         }
 
 
@@ -230,7 +234,7 @@ div.pageNavNums > span:hover {
 
     div.pageNavNums > span:hover > a {
         text-decoration: none;
-        color:#119cdd ;
+        color: #119cdd;
     }
 
 div.pageJunp {
@@ -244,8 +248,8 @@ div.pageJunp {
 }
 
     div.pageJunp > input {
-        text-align:center;
-        color:#119cdd;
+        text-align: center;
+        color: #119cdd;
         width: 40px;
         height: 20px;
         margin-bottom: 0;

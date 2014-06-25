@@ -11,7 +11,7 @@
     </div>
     <ul>
         <li>
-            Version 1.0.2
+            Version 1.0.3
         </li>
         <li>
             &copy;2014 星空之蓝小组
@@ -21,12 +21,12 @@
             <div class="append-pop-box authorTooltip">
                 <div>
                     <span class="tooltip-title">制作人员</span>
-                    <p>策划：王圣元</p>
-                    <p>数据：乔波、吴璇、王圣元</p>
-                    <p>网页代码：乔波</p>
-                    <p>外观设计：乔波、吴璇、王圣元</p>
-                    <p>测试人员：王圣元、许圣华</p>
-                    <p>赞助、特别鸣谢：李伯轩</p>
+                    <p>策划:王圣元</p>
+                    <p>数据:乔波、吴璇、王圣元</p>
+                    <p>网页代码:乔波</p>
+                    <p>外观设计:乔波、吴璇、王圣元</p>
+                    <p>测试人员:王圣元、吴璇、许圣华</p>
+                    <p>赞助、特别鸣谢:李伯轩</p>
                 </div>
             </div>
         </li>
@@ -166,9 +166,11 @@ if (!$databaseConnection){
     exit();
 }
 
+$table_name=strpos($_SERVER["SERVER_NAME"], 'test')===FALSE?' logs ':' logs_test ';
+
 mysql_select_db(DATABASE_NAME, $databaseConnection);
 //Prepair for tables
-$query = "CREATE TABLE IF NOT EXISTS logs";
+$query = "CREATE TABLE IF NOT EXISTS ".$table_name;
 $query.=" (id INT NOT NULL AUTO_INCREMENT, time TIMESTAMP NOT NULL, useragent TEXT , ";
 $query.="referer TEXT , ip TEXT ,pageURL TEXT, PRIMARY KEY (id))";
 mysql_query($query,$databaseConnection);
@@ -205,7 +207,7 @@ $ip = logGetIP();
 $pageURL = logGetPageURL();
 
 //Set vars
-$query="INSERT INTO logs ";
+$query="INSERT INTO ".$table_name;
 $query.=" ( useragent , referer , ip  ,pageURL , time ) VALUES ( ";
 $query.="\"$useragent\" , \"$referer\" , \"$ip\" , \"$pageURL\", NOW() )";
 
