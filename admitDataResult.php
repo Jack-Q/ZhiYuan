@@ -604,7 +604,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ansi" />
     <title>历年高校录取情况查询结果</title>
     <meta charset="utf-8" />
-    <link href="css/admitDataResult.css" rel="stylesheet" />
+    <link href="css/admitDataResult.css?v1.0.3" rel="stylesheet" />
     <?php include('header.php');?>
 </head>
 <body>
