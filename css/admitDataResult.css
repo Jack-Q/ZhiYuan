@@ -212,6 +212,18 @@ span.helpBox-closeButton{
     cursor:pointer;
 
 }
+div.helpBox-content{
+    width:90%;
+    margin:20px auto 20px auto;
+    text-indent:2em;
+    font-size:17px;
+    line-height:20px;
+}
+div.helpBox-content>p{
+    margin:0;
+    padding:0;
+
+}
 #resultTable td {
     border: 1px solid #ccc;
     margin: 0;

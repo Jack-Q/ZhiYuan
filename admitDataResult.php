@@ -888,7 +888,7 @@
 								}
 							}
 						</script>
-						<div class="helpShowBox" onclick="helpToggle()" style="display: none;" hidden="hidden">
+						<div class="helpShowBox" onclick="helpToggle()" ><!--style="display: none;" hidden="hidden"-->
 							<div class="toolbar-icon">
 								<img alt="Help" src="img/icon_help.png" />
 							</div>
@@ -905,8 +905,13 @@
 							<span>帮助</span>
 						</div>
 						<div class="helpBox-content">
-
-						</div>
+                            <img style="float:right;width:440px; margin-left:10px;" src="img/help_QueryResult.jpg" alt="Help Screen Shot" /> 
+                            <p>1.通过排序功能，您可以按照排名、分数、年份等数据对查询结果进行排序，以便您更快地找出您需要的数据。</p>
+                            <p>2.在此页面，您也可以点击学校名或专业名来查看该学校或该专业在近几年的录取情况.</p>
+                            <p>3.对于某些提前批次录取的情况，您也可以点击“提前批”来获取相关信息。</p>
+                            <p>4.当结果页面数目较多时，可以通过页面导航条跳转到指定的页面。</p>
+                            
+                        </div>
 					</div>
 					<?php
 					}
