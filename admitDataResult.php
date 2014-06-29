@@ -25,20 +25,20 @@
         $pageOffset=1;
     }
     
-    $globalRankFlag=isset($_REQUEST['rankFlag'])
-        &&(!empty($_REQUEST['rankFlag']))
-        &&$_REQUEST['rankFlag'];
+    $globalRankFlag=isset($_GET['rankFlag'])
+        &&(!empty($_GET['rankFlag']))
+        ?$_GET['rankFlag']:FALSE;
 	$globalRankString;
 	$globalRankType='1';
 	$globalRankOrder='1';
     if($globalRankFlag){
 		switch($globalRankFlag){
 			case '11': $globalRankString=' ORDER BY Rank ';		$globalRankType='1';	$globalRankOrder='1'; break;
-			case '12': $globalRankString=' ORDER BY Rank DESC';	$globalRankType='1';	$globalRankOrder='2'; break;
+			case '12': $globalRankString=' ORDER BY Rank DESC ';	$globalRankType='1';	$globalRankOrder='2'; break;
 			case '21': $globalRankString=' ORDER BY Score ';	$globalRankType='2';	$globalRankOrder='1'; break;
-			case '22': $globalRankString=' ORDER BY Score DESC';$globalRankType='2';	$globalRankOrder='2'; break;
+			case '22': $globalRankString=' ORDER BY Score DESC ';$globalRankType='2';	$globalRankOrder='2'; break;
 			case '31': $globalRankString=' ORDER BY Year ';		$globalRankType='3';	$globalRankOrder='1'; break;
-			case '32': $globalRankString=' ORDER BY Year DESC';	$globalRankType='3';	$globalRankOrder='2'; break;
+			case '32': $globalRankString=' ORDER BY Year DESC ';	$globalRankType='3';	$globalRankOrder='2'; break;
 			//case '41': $globalRankString=' ORDER BY Delta ';break;
 			//case '42': $globalRankString=' ORDER BY Delta DESC';break;
 			default:$globalRankString='';$globalRankFlag=FALSE;
@@ -809,13 +809,17 @@
 					<div class="toolbarBox">
 						<div class="orderSetBox">
 							<div class="toolbar-icon">
-								<img src="img/icon_rank.png" />
+								<img alt="Rank" src="img/icon_rank.png" />
 							</div>
 							<div class="toobar-label">排序</div>
 							<div class="orderSetContent">
 								<span>以</span>
 								<select id='toolbox_rankType'>
 									<?php
+                                        echo $globalRankFlag."\n";
+                                        echo $globalRankType."\n";
+                                        echo $globalRankString."\n";
+                                        echo $globalRankOrder."\n";
 										switch($globalRankType){
 											case '1':
 												echo('<option value="1" selected="selected">排名</option>'
@@ -884,9 +888,9 @@
 								}
 							}
 						</script>
-						<div class="helpShowBox" onclick="helpToggle()">
+						<div class="helpShowBox" onclick="helpToggle()" style="display: none;" hidden="hidden">
 							<div class="toolbar-icon">
-								<img src="img/icon_help.png" />
+								<img alt="Help" src="img/icon_help.png" />
 							</div>
 							<div class="toobar-label">帮助</div>
 						</div>
