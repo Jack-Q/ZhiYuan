@@ -15,6 +15,7 @@
     }else{
         $wenliType=FALSE;
     }
+	
     $pageOffset=isset($_GET['offset'])
         &&(!empty($_GET['offset']))
         &&(intval(trim($_GET['offset'])));
@@ -24,6 +25,30 @@
         $pageOffset=1;
     }
     
+    $globalRankFlag=isset($_REQUEST['rankFlag'])
+        &&(!empty($_REQUEST['rankFlag']))
+        &&$_REQUEST['rankFlag'];
+	$globalRankString;
+	$globalRankType='1';
+	$globalRankOrder='1';
+    if($globalRankFlag){
+		switch($globalRankFlag){
+			case '11': $globalRankString=' ORDER BY Rank ';		$globalRankType='1';	$globalRankOrder='1'; break;
+			case '12': $globalRankString=' ORDER BY Rank DESC';	$globalRankType='1';	$globalRankOrder='2'; break;
+			case '21': $globalRankString=' ORDER BY Score ';	$globalRankType='2';	$globalRankOrder='1'; break;
+			case '22': $globalRankString=' ORDER BY Score DESC';$globalRankType='2';	$globalRankOrder='2'; break;
+			case '31': $globalRankString=' ORDER BY Year ';		$globalRankType='3';	$globalRankOrder='1'; break;
+			case '32': $globalRankString=' ORDER BY Year DESC';	$globalRankType='3';	$globalRankOrder='2'; break;
+			//case '41': $globalRankString=' ORDER BY Delta ';break;
+			//case '42': $globalRankString=' ORDER BY Delta DESC';break;
+			default:$globalRankString='';$globalRankFlag=FALSE;
+		}
+    }else{
+        $globalRankFlag=FALSE;
+    }
+	
+	
+	
     function curPageURL() {
         $pageURL = 'http';
         if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
@@ -35,7 +60,8 @@
         }
         return $pageURL;
     }
-    function connectDatabase(){
+    
+	function connectDatabase(){
         global $databaseConnection;
         $databaseConnection=mysql_connect(DATABASE_HOST,DATABASE_USER, DATABASE_PASSWORD);
         if (!$databaseConnection)
@@ -46,12 +72,14 @@
         }
         mysql_select_db(DATABASE_NAME, $databaseConnection);
     }
-    function closeDatabase(){
+    
+	function closeDatabase(){
         global $databaseConnection;
         mysql_close($databaseConnection);
         
     }
-    function wenli2String(){
+    
+	function wenli2String(){
         global $wenliType;
         if($wenliType){
             return '文';
@@ -59,7 +87,8 @@
             return '理';
         }
     }
-    function typePC2wordPC($typePC){
+    
+	function typePC2wordPC($typePC){
         switch($typePC){
             case 'Pre':
                 return '提前批';
@@ -73,7 +102,8 @@
                 return '';
         }
     }
-    function year2yearType($yearStr){
+    
+	function year2yearType($yearStr){
 	
         switch ($yearStr) {
             case '2013' : return 2;
@@ -82,6 +112,7 @@
             default : return 0;
         }
     }
+	
 	function getAdmissionLine($year,$pc){
         global $wenliType;
 		if(!$wenliType){
@@ -114,6 +145,7 @@
 			}
 		}
 	}
+	
 	function calcDelta($score ,$year){
 		$year=year2yearType($year);
 		$score = intval($score);
@@ -125,10 +157,12 @@
 			return -1;
 		}
 	}
+	
 	function calcScoreByDelta($delta ,$PC,$year){
 		return getAdmissionLine($year,$PC)+$delta;
 	}
-    function fillHTMLRow($RowLine,$line){
+    
+	function fillHTMLRow($RowLine,$line){
         global $wenliType;
         echo '<tr><td>'.($line+1).'</td>'; 
         echo '<td><a href="admitDataResult.php?queryType=1&typeWL='.($wenliType?1:0).'&queryYear=0&SchoolName='
@@ -156,29 +190,34 @@
 		}elseif($delta<2000){
 			
 			echo '<a href="admitDataResult.php?queryType=5&typeWL='
-				.($wenliType?1:0).'&queryYear='.year2yearType($RowLine[8]).'&typePC=1&delta='
-				.($delta-1000).'">'
+				.($wenliType?1:0).'&queryYear='.year2yearType($RowLine[8]).'&typePC=1&deltaUpperBound='
+				.($delta-1000).'&deltaLowerBound='.($delta-1000).'">'
 				.($delta-1000).'<div class="resultTooltip4">查看'
 				.$RowLine[8].'年与一本线差距'
 				.($delta-1000).'的考生录取情况</div></a>';
 		}else{
 			
 			echo '<a href="admitDataResult.php?queryType=5&typeWL='
-				.($wenliType?1:0).'&queryYear='.year2yearType($RowLine[8]).'&typePC=2&delta='
-				.($delta-2000).'">'
+				.($wenliType?1:0).'&queryYear='.year2yearType($RowLine[8]).'&typePC=2&deltaUpperBound='
+				.($delta-2000).'&deltaLowerBound='.($delta-2000).'">'
 				.($delta-2000).'<div class="resultTooltip4">查看'
 				.$RowLine[8].'年与二本线差距'
 				.($delta-2000).'的考生录取情况</div></a>';
 		}
 		echo '</td></tr>';
     }
-    function fetchDataByScore($lowerBnd,$upperBnd,$yearInd){
+    
+	function fetchDataByScore($lowerBnd,$upperBnd,$yearInd){
         global $databaseConnection;
         global $errorOccurance;
         global $dataConut;
         global $dataRows;
         global $briefDescription;
         global $wenliType;
+		global $globalRankFlag;
+		global $globalRankString;
+		global $globalRankType;
+		global $globalRankOrder;
         $YEAR_STR;
         $queryStr='SELECT * FROM AdmitInfo WHERE ( Score BETWEEN ';
         $queryStr.=$lowerBnd.' AND '.$upperBnd;
@@ -209,7 +248,14 @@
                 $errorOccurance=TRUE;
         }
         $queryStr.=$wenliType?'AND ( TypeWL = "W") ':'AND ( TypeWL = "L") ';
-        $queryStr.=' ORDER BY Score DESC , Year DESC';
+		if($globalRankFlag){
+			$queryStr.=$globalRankString;
+		}else{
+			$queryStr.=' ORDER BY Score DESC , Year DESC';
+			$globalRankFlag='2';
+			$globalRankOrder='2';
+		}
+        
         $result=mysql_query($queryStr,$databaseConnection);
         if(!$result){
             $errorOccurance=TRUE;
@@ -225,13 +271,18 @@
             $briefDescription.='检索到'.$dataConut.'个结果。';
         }
     }
-    function fetchDataBySchool($school,$yearInd){
+    
+	function fetchDataBySchool($school,$yearInd){
         global $databaseConnection;
         global $errorOccurance;
         global $dataConut;
         global $dataRows;
         global $briefDescription;
         global $wenliType;
+		global $globalRankFlag;
+		global $globalRankString;
+		global $globalRankType;
+		global $globalRankOrder;
         $YEAR_STR;
         $queryStr='SELECT * FROM AdmitInfo WHERE ( College = "';
         $queryStr.=$school;
@@ -262,7 +313,13 @@
                 $errorOccurance=TRUE;
         }
         $queryStr.=$wenliType?'AND ( TypeWL = "W") ':'AND ( TypeWL = "L") ';
-        $queryStr.=' ORDER BY Rank , Year DESC';
+		if($globalRankFlag){
+			$queryStr.=$globalRankString;
+		}else{
+			$queryStr.=' ORDER BY Rank , Year DESC';
+			$globalRankFlag='1';
+			$globalRankOrder='1';
+		}
         $result=mysql_query($queryStr,$databaseConnection);
         if(!$result){
             $errorOccurance=TRUE;
@@ -277,13 +334,18 @@
             $briefDescription.='检索到'.$dataConut.'个结果。';
         }
     }
-    function fetchDataByRank($lowerBnd,$upperBnd,$yearInd){
+    
+	function fetchDataByRank($lowerBnd,$upperBnd,$yearInd){
         global $databaseConnection;
         global $errorOccurance;
         global $dataConut;
         global $dataRows;
         global $briefDescription;
         global $wenliType;
+		global $globalRankFlag;
+		global $globalRankString;
+		global $globalRankType;
+		global $globalRankOrder;
         $YEAR_STR;
         $queryStr='SELECT * FROM AdmitInfo WHERE ( Rank BETWEEN ';
         $queryStr.=$lowerBnd.' AND '.$upperBnd;
@@ -314,7 +376,13 @@
                 $errorOccurance=TRUE;
         }
         $queryStr.=$wenliType?'AND ( TypeWL = "W") ':'AND ( TypeWL = "L") ';
-        $queryStr.=' ORDER BY Rank , Year DESC';
+		if($globalRankFlag){
+			$queryStr.=$globalRankString;
+		}else{
+			$queryStr.=' ORDER BY Rank , Year DESC';
+			$globalRankFlag='1';
+			$globalRankOrder='1';
+		}
         $result=mysql_query($queryStr,$databaseConnection);
         if(!$result){
             $errorOccurance=TRUE;
@@ -330,13 +398,18 @@
             $briefDescription.='检索到'.$dataConut.'个结果。';
         }
     }
-    function fetchDataBySchoolAndMajor($school,$major,$yearInd){
+    
+	function fetchDataBySchoolAndMajor($school,$major,$yearInd){
         global $databaseConnection;
         global $errorOccurance;
         global $dataConut;
         global $dataRows;
         global $briefDescription;
         global $wenliType;
+		global $globalRankFlag;
+		global $globalRankString;
+		global $globalRankType;
+		global $globalRankOrder;
         $YEAR_STR;
         $queryStr='SELECT * FROM AdmitInfo WHERE ( College = "';
         $queryStr.=$school;
@@ -369,7 +442,13 @@
                 $errorOccurance=TRUE;
         }
         $queryStr.=$wenliType?'AND ( TypeWL = "W") ':'AND ( TypeWL = "L") ';
-        $queryStr.=' ORDER BY Year DESC , Rank';
+		if($globalRankFlag){
+			$queryStr.=$globalRankString;
+		}else{
+			$queryStr.=' ORDER BY Year DESC , Rank';
+			$globalRankFlag='3';
+			$globalRankOrder='2';
+		}
         $result=mysql_query($queryStr,$databaseConnection);
         if(!$result){
             $errorOccurance=TRUE;
@@ -384,13 +463,18 @@
             $briefDescription.='检索到'.$dataConut.'个结果。';
         }
     }
-    function fetchDataByPreAdmissionYear($yearInd){        
+    
+	function fetchDataByPreAdmissionYear($yearInd){        
         global $databaseConnection;
         global $errorOccurance;
         global $dataConut;
         global $dataRows;
         global $briefDescription;
         global $wenliType;
+		global $globalRankFlag;
+		global $globalRankString;
+		global $globalRankType;
+		global $globalRankOrder;
         $YEAR_STR;
         $queryStr='SELECT * FROM AdmitInfo WHERE ( TypePC = "Pre" ) AND ';
         switch($yearInd){
@@ -419,7 +503,13 @@
                 $errorOccurance=TRUE;
         }
         $queryStr.=$wenliType?' AND ( TypeWL = "W") ':'AND ( TypeWL = "L") ';
-        $queryStr.=' ORDER BY Rank , Year DESC';
+		if($globalRankFlag){
+			$queryStr.=$globalRankString;
+		}else{
+			$queryStr.=' ORDER BY Rank , Year DESC';
+			$globalRankFlag='1';
+			$globalRankOrder='1';
+		}
         $result=mysql_query($queryStr,$databaseConnection);
         if(!$result){
             $errorOccurance=TRUE;
@@ -434,17 +524,23 @@
             $briefDescription.='检索到'.$dataConut.'个结果。';
         }
     }
-	function fetchDataByDelta($deltaValue,$typePC,$yearInd){
+	
+	function fetchDataByDelta($deltaUpperValue,$deltaLowerValue,$typePC,$yearInd){
         global $databaseConnection;
         global $errorOccurance;
         global $dataConut;
         global $dataRows;
         global $briefDescription;
         global $wenliType;
-		$queryScore=calcScoreByDelta($deltaValue,$typePC,$yearInd);
+		global $globalRankFlag;
+		global $globalRankString;
+		global $globalRankType;
+		global $globalRankOrder;
+		$queryMaxScore=calcScoreByDelta($deltaUpperValue,$typePC,$yearInd);
+		$queryMinScore=calcScoreByDelta($deltaLowerValue,$typePC,$yearInd);
         $YEAR_STR;
-        $queryStr='SELECT * FROM AdmitInfo WHERE ( Score = ';
-        $queryStr.=$queryScore.' ) ';
+        $queryStr='SELECT * FROM AdmitInfo WHERE ( Score BETWEEN ';
+        $queryStr.=$queryMinScore.' AND '.$queryMaxScore.' ) ';
         switch($yearInd){
             //case '0':
             //    $YEAR_STR='近三';
@@ -471,7 +567,13 @@
                 $errorOccurance=TRUE;
         }
         $queryStr.=$wenliType?' AND ( TypeWL = "W") ':' AND ( TypeWL = "L") ';
-        //$queryStr.=' ORDER BY Rank , Year DESC';
+		if($globalRankFlag){
+			$queryStr.=$globalRankString;
+		}else{
+			$queryStr.=' ORDER BY Rank , Year DESC';
+			$globalRankFlag='1';
+			$globalRankOrder='1';
+		}
         $result=mysql_query($queryStr,$databaseConnection);
         if(!$result){
             $errorOccurance=TRUE;
@@ -479,14 +581,16 @@
         }
         $dataConut=mysql_num_rows($result);
         $dataRows=$result;
-        $briefDescription='检索'.$YEAR_STR.'年与第'.($typePC=='1'?'一':'二').'批次录取线差距为'.$deltaValue.'的考生('.wenli2String().'科)录取信息,';
+        $briefDescription='检索'.$YEAR_STR.'年与第'.($typePC=='1'?'一':'二').'批次录取线差距介于'.$deltaUpperValue.
+			'到'.$deltaLowerValue.'的考生('.wenli2String().'科)录取信息,';
         if($dataConut==0){
             $briefDescription.='未检索到结果。';
         }else{
             $briefDescription.='检索到'.$dataConut.'个结果。';
         }
     }
-    if(isset($_GET['queryType'])){
+    
+	if(isset($_GET['queryType'])){
         $selectType=$_GET['queryType'];
         switch ($selectType){
             case '0':
@@ -571,15 +675,17 @@
                 break;
 			case '5':
 			     //By Delta
-                if(isset($_GET['queryYear'],$_GET['typePC'],$_GET['delta'])
+                if(isset($_GET['queryYear'],$_GET['typePC'],$_GET['deltaUpperBound'],$_GET['deltaLowerBound'])
                     &&!empty($_GET['typePC'])
-                    &&!empty($_GET['delta'])){
+                    &&!empty($_GET['deltaLowerBound'])
+					&&!empty($_GET['deltaUpperBound'])){
                     $typePC=trim($_GET['typePC']);
-                    $delta=trim($_GET['delta']);
+                    $deltaUpperBound=trim($_GET['deltaUpperBound']);
+                    $deltaLowerBound=trim($_GET['deltaLowerBound']);
                     $yearType=$_GET['queryYear'];
-                    if($delta&&$typePC){
+                    if($deltaLowerBound&&$deltaLowerBound&&$typePC){
                         connectDatabase();
-                        fetchDataByDelta($delta,$typePC,$yearType);
+                        fetchDataByDelta($deltaUpperBound,$deltaLowerBound,$typePC,$yearType);
                         closeDataBase();
                     }else{
                         $errorOccurance=TRUE;
@@ -638,61 +744,170 @@
 				
                     <?php echo $briefDescription; ?>
                 </div>
-				<div class="toolbarBox">
-					<div class="orderSetBox">
-						<div class="toolbar-icon">
-                            <img src="img/icon_rank.png" />
-						</div>
-						<div class="toobar-label">排序</div>
-                        <div class="orderSetContent">
-                            <span>以</span>
-                            <select>
-                                <option>排名</option>
-                                <option>分数</option>
-                                <option>年份</option>
-                                <option>线差</option>
-                            </select>
-                            <span>为关键字按</span>
-                            <select>
-                                <option>递增</option>
-                                <option>递减</option>
-                            </select>
-                            <span>的顺序</span>
-                            <span class="orderJump" >
-                                排序
-                            </span>
-                        </div>
-					</div>
-                    <script>
-                        function helpToggle(){
-                            var helpBox=document.getElementById('helpBox');
-                            if(helpBox.className=='helpBox-on'){
-                                helpBox.className='helpBox-off';
+				<?php
+					if($dataConut>0){
+						
+						//Get URL base for page rank function.
+                        $curURL=curPageURL();
+                        $curURL_offsetPos=strpos($curURL,'offset');
+						$curURL_rankFlagPos=strpos($curURL,'rankFlag');
+                        if($curURL_offsetPos===FALSE){
+							if($curURL_rankFlagPos===FALSE){
+								$newURLBaseForRank=$curURL.'&rankFlag=';
+							}else{
+								$curURL_hashPos=strpos($curURL,'&',$curURL_rankFlagPos);
+								if($curURL_hashPos==FALSE){
+									$newURLBaseForRank=substr($curURL,0,strpos($curURL,'=',$curURL_rankFlagPos)+1);
+								}else{
+									$newURLBase_Part1=substr($curURL,0,$curURL_rankFlagPos);
+									$newURLBase_Part2=substr($curURL,$curURL_hashPos+1,strlen($curURL));
+									$newURLBaseForRank=$newURLBase_Part1.$newURLBase_Part2.'&rankFlag=';
+								}
+							}
+                            
+                        }else{
+                            $curURL_hashPos=strpos($curURL,'&',$curURL_offsetPos);
+                            if($curURL_hashPos==FALSE){
+                                $curURL=substr($curURL,0,$curURL_offsetPos-1);
+								
+								$curURL_rankFlagPos=strpos($curURL,'rankFlag');
+								if($curURL_rankFlagPos===FALSE){
+									$newURLBaseForRank=$curURL.'&rankFlag=';
+								}else{
+									$curURL_hashPos=strpos($curURL,'&',$curURL_rankFlagPos);
+									if($curURL_hashPos==FALSE){
+										$newURLBaseForRank=substr($curURL,0,strpos($curURL,'=',$curURL_rankFlagPos)+1);
+									}else{
+										$newURLBase_Part1=substr($curURL,0,$curURL_rankFlagPos);
+										$newURLBase_Part2=substr($curURL,$curURL_hashPos+1,strlen($curURL));
+										$newURLBaseForRank=$newURLBase_Part1.$newURLBase_Part2.'&rankFlag=';
+									}
+								}
+								
+								
                             }else{
-                                helpBox.className='helpBox-on';
+                                $newURLBase_Part1=substr($curURL,0,$curURL_offsetPos);
+                                $newURLBase_Part2=substr($curURL,$curURL_hashPos+1,strlen($curURL));
+                                $curURL=$newURLBase_Part1.$newURLBase_Part2;
+								
+								$curURL_rankFlagPos=strpos($curURL,'rankFlag');
+								if($curURL_rankFlagPos===FALSE){
+									$newURLBaseForRank=$curURL.'&rankFlag=';
+								}else{
+									$curURL_hashPos=strpos($curURL,'&',$curURL_rankFlagPos);
+									if($curURL_hashPos==FALSE){
+										$newURLBaseForRank=substr($curURL,0,strpos($curURL,'=',$curURL_rankFlagPos)+1);
+									}else{
+										$newURLBase_Part1=substr($curURL,0,$curURL_rankFlagPos);
+										$newURLBase_Part2=substr($curURL,$curURL_hashPos+1,strlen($curURL));
+										$newURLBaseForRank=$newURLBase_Part1.$newURLBase_Part2.'&rankFlag=';
+									}
+								}
                             }
                         }
-                    </script>
-                    <div class="helpShowBox" onclick="helpToggle()">
-                        <div class="toolbar-icon">
-                            <img src="img/icon_help.png" />
-                        </div>
-                        <div class="toobar-label">帮助</div>
-                    </div>
-				</div>
-                <div id="helpBox" class="helpBox-off">
-                    <div class="helpBox-titleLine">
-                        
-                        <span class="helpBox-closeButton" title="关闭帮助" onclick="helpToggle()">
-                            ×
-                        </span>
-                        <span>帮助</span>
-                    </div>
-                    <div class="helpBox-content">
+						?>
+					<div class="toolbarBox">
+						<div class="orderSetBox">
+							<div class="toolbar-icon">
+								<img src="img/icon_rank.png" />
+							</div>
+							<div class="toobar-label">排序</div>
+							<div class="orderSetContent">
+								<span>以</span>
+								<select id='toolbox_rankType'>
+									<?php
+										switch($globalRankType){
+											case '1':
+												echo('<option value="1" selected="selected">排名</option>'
+													.'<option value="2">分数</option><option value="3">年份</option>');
+												break;
+											case '2':
+												echo('<option value="1">排名</option><option value="2" selected="selected">'
+													.'分数</option><option value="3">年份</option>');
+												break;
+											case '3':
+												echo('<option value="1">排名</option><option value="2">分数</option>'
+													.'<option value="3" selected="selected">年份</option>');
+												break;
+											case '4':
+												echo('<option value="1" selected="selected">排名</option>'
+													.'<option value="2">分数</option><option value="3">年份</option>');
+												break;
+											default:
+												echo('<option value="1" selected="selected">排名</option>'
+													.'<option value="2">分数</option><option value="3">年份</option>');
+										}
+									?>
+									
+									<!--<option value='4'>线差</option>-->
+								</select>
+								<span>为关键字按</span>
+								<select id='toolbox_rankOrder'>
+									<?php
+										switch($globalRankOrder){
+											case '1':
+												echo('<option value="1" selected="selected">递增</option><option value="2">递减</option>');
+												break;
+											default:
+												echo('<option value="1">递增</option><option value="2" selected="selected">递减</option>');
+										}
+									?>
+									
+								</select>
+								<span>的顺序</span>
+								<script>
+									function toolBox_rankSubmit(){
+										var rankType=document.getElementById('toolbox_rankType');
+										var rankOrder=document.getElementById('toolbox_rankOrder');
+										
+										var rankFlag=''+rankType.value+rankOrder.value;
+										
+										var URL_base='<?php
+											echo $newURLBaseForRank;
+										?>';
+										
+										window.location=URL_base+rankFlag;
+									}
+								</script>
+								<span class="orderJump" onclick="toolBox_rankSubmit()">
+									排序
+								</span>
+							</div>
+						</div>
+						<script>
+							function helpToggle(){
+								var helpBox=document.getElementById('helpBox');
+								if(helpBox.className=='helpBox-on'){
+									helpBox.className='helpBox-off';
+								}else{
+									helpBox.className='helpBox-on';
+								}
+							}
+						</script>
+						<div class="helpShowBox" onclick="helpToggle()">
+							<div class="toolbar-icon">
+								<img src="img/icon_help.png" />
+							</div>
+							<div class="toobar-label">帮助</div>
+						</div>
+					</div>
+					<div id="helpBox" class="helpBox-off">
+					
+						<div class="helpBox-titleLine">
+							
+							<span class="helpBox-closeButton" title="关闭帮助" onclick="helpToggle()">
+								×
+							</span>
+							<span>帮助</span>
+						</div>
+						<div class="helpBox-content">
 
-                    </div>
-                </div>
-                <div id="detialResult">
+						</div>
+					</div>
+					<?php
+					}
+				?>
+				<div id="detialResult">
 				
                     <?php
                         if(!$dataConut>0){
@@ -738,7 +953,6 @@
                                     fillHTMLRow($row,$i);
                                 }
                             }
-                                                            
                         ?>
                         </tbody>
                     </table>

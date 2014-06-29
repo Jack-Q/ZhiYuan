@@ -11,7 +11,7 @@
     </div>
     <ul>
         <li>
-            Version 1.0.3
+            Version 1.0.3 beta-4 
         </li>
         <li>
             &copy;2014 星空之蓝小组

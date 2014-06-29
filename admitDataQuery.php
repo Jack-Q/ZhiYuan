@@ -297,8 +297,10 @@
                                 </div>
                                 <div class="formSet">
                                     <span class="label">录取线差</span>
-                                    <input type="number" min="1" max="750" step="1" name="delta" 
-                                           spellcheck="false" placeholder="在此输入查询分数与当年录取线的差值" />
+                                    上界<input class="min-input" type="number" min="0" max="750" step="1" name="deltaUpperBound" 
+                                           spellcheck="false" placeholder="在此输入该批次线差的最大值" />
+                                    下界<input class="min-input" type="number" min="0" max="750" step="1" name="deltaLowerBound" 
+                                           spellcheck="false" placeholder="在此输入该批次线差的最小值" />
                                 </div>
                                 <div class="submitArea">
                                     <input type="reset" title="清空表单内容" value="清空" />
